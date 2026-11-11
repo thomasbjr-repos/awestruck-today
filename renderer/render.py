@@ -4,7 +4,7 @@ Usage: python3 render.py entry.json outdir
 Produces carousel slides (1080x1350) and a lock screen (1080x1920) as PNG.
 Fonts: uses Instrument Serif / Inter if installed; falls back to a local serif.
 """
-import json, sys, pathlib
+import json, sys, pathlib, base64, mimetypes
 from playwright.sync_api import sync_playwright
 
 NIGHT, PANEL, LINE, IVORY, MIST, SLATE, GOLD = "#0B0F14", "#121821", "#222B38", "#F1EEE8", "#C4C9D2", "#8A93A3", "#E9C77B"
@@ -20,10 +20,15 @@ def motif_svg(color, w=920, h=560):
     path = " ".join(f"{x},{y}" for x, y in pts)
     return f'<svg width="100%" height="100%" viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid meet"><polyline points="{path}" fill="none" stroke="{color}" stroke-width="1.5" stroke-dasharray="4 8" opacity=".6"/>{lines}{notes}</svg>'
 
+def data_uri(f):
+    """Inline a local file so Chrome loads it (set_content pages can't read file:// URLs)."""
+    mime = mimetypes.guess_type(str(f))[0] or ("font/ttf" if str(f).endswith(".ttf") else "application/octet-stream")
+    return f"data:{mime};base64," + base64.b64encode(pathlib.Path(f).read_bytes()).decode()
+
 def frame_inner(path, c, base):
     f = (base / path) if path else None
     if f and f.exists():
-        return f'<img src="{f.resolve().as_uri()}" style="width:100%;height:100%;object-fit:cover;display:block">'
+        return f'<img src="{data_uri(f)}" style="width:100%;height:100%;object-fit:cover;display:block">'
     return motif_svg(c)
 
 FONT_DIR = pathlib.Path(__file__).resolve().parent.parent / "fonts"
@@ -34,7 +39,7 @@ def font_faces():
                               ("Instrument Serif", "InstrumentSerif-Italic.ttf", "italic")]:
         f = FONT_DIR / fname
         if f.exists():
-            css += f"@font-face{{font-family:'{fam}';src:url('{f.as_uri()}');font-style:{style}}}"
+            css += f"@font-face{{font-family:'{fam}';src:url('{data_uri(f)}');font-style:{style}}}"
     return css
 
 def base_css(c):
