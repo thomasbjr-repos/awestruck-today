@@ -1,0 +1,73 @@
+{
+  "id": "AT-11-11-MUS-steele",
+  "theme": "MUSIC & HYMNS",
+  "theme_color": "#A48CF0",
+  "motif": "staff",
+  "hook_lead": "She hadn't left her room in years. Her last words were",
+  "hook_payoff": "six words from Job.",
+  "date_line": "Died November 11, 1778 · Broughton, England",
+  "scripture_ref": "Job 19:25",
+  "image_label": "COVER IMAGE ⚠ St Mary’s Church, Broughton, where she is buried (Commons, CC BY-SA, to confirm)",
+  "slides": [
+    {
+      "kind": "image",
+      "image": "../assets/AT-11-11-MUS-steele/card.jpg",
+      "image_label": "IMAGE ⚠ Steele family tomb, St Mary’s churchyard (photo permission pending)",
+      "body": "Anne Steele died on <em>November 11, 1778,</em> in Broughton, England. She was 61, and sick for most of her life."
+    },
+    {
+      "kind": "text",
+      "body": "In 1760 she published her hymns, honest ones about sorrow and “fainting hope.” She signed them <em>“Theodosia”: gift of God.</em>"
+    },
+    {
+      "kind": "stat",
+      "qualifier": "nearly",
+      "numeral": "700",
+      "meaning": "hymnals have printed her prayer about what God withholds",
+      "comparison": "“Father, whate’er of earthly bliss,” from her 1760 poems",
+      "source": "Source: Hymnary.org index, Nov 2026 · Tier A"
+    },
+    {
+      "kind": "quote",
+      "lines": [
+        "Dear Refuge of my weary soul,",
+        "On thee, when sorrows rise,",
+        "On thee, when waves of trouble roll,",
+        "My fainting hope relies."
+      ],
+      "credit": "Anne Steele, 1760"
+    },
+    {
+      "kind": "verse",
+      "pre": "Her last words, on November 11, 1778:",
+      "text": "“I know that my Redeemer liveth.”",
+      "ref": "Job 19:25 (KJV)"
+    },
+    {
+      "kind": "end",
+      "prompt": "What’s a “no” from God you’re still learning to thank Him for?"
+    }
+  ],
+  "lock_quote": [
+    "Dear Refuge of my weary soul,",
+    "On thee, when sorrows rise,",
+    "On thee, when waves of trouble roll,",
+    "My fainting hope relies."
+  ],
+  "lock_credit": "Anne Steele, 1760",
+  "cover_image": "../assets/AT-11-11-MUS-steele/cover.jpg",
+  "media": [
+    {
+      "role": "cover",
+      "file": "cover.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:St_Mary_the_Virgin,_Broughton_-_geograph.org.uk_-_1505762.jpg",
+      "caption": "St Mary's Church, Broughton, where Anne Steele is buried (present day)"
+    },
+    {
+      "role": "card",
+      "file": "card.jpg",
+      "status": "needs_permission",
+      "note": "Steele family tomb chest; no openly licensed photo found. Backup: her signature on Commons (check license)."
+    }
+  ]
+}
