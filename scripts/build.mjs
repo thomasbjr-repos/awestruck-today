@@ -43,7 +43,17 @@ const THEMES = {
 
 const HEADLINE = 'Every day, a true story of what God did through ordinary, flawed people to shape the world.';
 
-function page({ title, body, description = HEADLINE, accent = '#E9C77B', noindex = false }) {
+const MARK = `<svg class="sun" viewBox="0 0 200 140" fill="none" stroke="#E9C77B" stroke-width="5" stroke-linecap="round" aria-hidden="true"><line x1="125.7" y1="88.4" x2="163.4" y2="83.1"/><line x1="124.2" y1="82.4" x2="153.9" y2="70.6"/><line x1="121.2" y1="77.0" x2="163.6" y2="46.9"/><line x1="117.1" y1="72.4" x2="138.1" y2="48.2"/><line x1="111.9" y1="68.9" x2="135.8" y2="22.7"/><line x1="106.1" y1="66.7" x2="113.7" y2="35.6"/><line x1="100.0" y1="66.0" x2="100.0" y2="14.0"/><line x1="93.9" y1="66.7" x2="86.3" y2="35.6"/><line x1="88.1" y1="68.9" x2="64.2" y2="22.7"/><line x1="82.9" y1="72.4" x2="61.9" y2="48.2"/><line x1="78.8" y1="77.0" x2="36.4" y2="46.9"/><line x1="75.8" y1="82.4" x2="46.1" y2="70.6"/><line x1="74.3" y1="88.4" x2="36.6" y2="83.1"/><path d="M100 63 L103.6 75.4 L116 79 L103.6 82.6 L100 92 L96.4 82.6 L84 79 L96.4 75.4 Z" fill="#E9C77B" stroke="none"/><path d="M24 92 H176"/><path d="M50 105 H150"/><path d="M68 116 H132"/><path d="M86 127 H114"/></svg>`;
+
+// Monogram (profile picture / favicon), from the Logo marks canvas.
+const RAYS = Array.from({ length: 24 }, (_, i) => {
+  const a = i * Math.PI / 12, r2 = i % 2 ? 76 : 84;
+  const f = n => n.toFixed(1);
+  return `<line x1="${f(100 + 60 * Math.cos(a))}" y1="${f(100 + 60 * Math.sin(a))}" x2="${f(100 + r2 * Math.cos(a))}" y2="${f(100 + r2 * Math.sin(a))}"/>`;
+}).join('');
+const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="#121821" stroke="#E9C77B" stroke-width="6"/><g stroke="#E9C77B" stroke-width="3" stroke-linecap="round" opacity="0.4">${RAYS}</g><text x="100" y="131" text-anchor="middle" font-family="Instrument Serif, Georgia, serif" font-size="104" fill="#F1EEE8">A<tspan font-style="italic" font-size="70" fill="#E9C77B" dx="2">t</tspan></text></svg>`;
+
+function page({ title, body, description = HEADLINE, accent = '#E9C77B', noindex = false, showHeadline = true }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +61,8 @@ function page({ title, body, description = HEADLINE, accent = '#E9C77B', noindex
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-${noindex ? '<meta name="robots" content="noindex">\n' : ''}<link rel="preconnect" href="https://fonts.googleapis.com">
+${noindex ? '<meta name="robots" content="noindex">\n' : ''}<link rel="icon" href="${BASE}/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -61,7 +72,8 @@ html,body{margin:0;background:var(--night);color:var(--ivory);font:400 18px/1.6 
 a{color:var(--gold)}
 .wrap{max-width:720px;margin:0 auto;padding:32px 24px 64px}
 header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:16px}
-.mark{font:400 30px/1 'Instrument Serif',Georgia,serif;color:var(--ivory);text-decoration:none}
+.mark{display:inline-flex;align-items:center;gap:12px;font:400 30px/1 'Instrument Serif',Georgia,serif;color:var(--ivory);text-decoration:none}
+.mark .sun{width:60px;height:auto;flex:none}
 .mark em{color:var(--gold)}
 .stamp{font:500 13px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 h1{font:400 clamp(40px,8vw,64px)/1.05 'Instrument Serif',Georgia,serif;margin:40px 0 16px}
@@ -72,8 +84,8 @@ footer{margin-top:64px;border-top:1px solid var(--line);padding-top:16px;color:v
 </style>
 </head>
 <body><div class="wrap">
-<header><a class="mark" href="${BASE}/">Awestruck <em>Today</em></a></header>
-<p class="headline">${esc(HEADLINE)}</p>
+<header><a class="mark" href="${BASE}/" aria-label="Awestruck Today home">${MARK}<span>Awestruck <em>Today</em></span></a></header>
+${showHeadline ? `<p class="headline">${esc(HEADLINE)}</p>` : ''}
 ${body}
 <footer>© Awestruck Today. Every date, quote and number is sourced and tiered.</footer>
 </div></body></html>
@@ -142,11 +154,12 @@ ${e.html || ''}`;
 
   const home = latest
     ? `<h1>Today's story</h1><p><a href="${BASE}${entryPath(target)}">${esc(target.title)}</a></p>`
-    : `<h1>Launching <em>Saturday, November 28, 2026</em></h1>
+    : `<h1>Launching <em>Nov 28</em></h1>
 <p>One true story every day of what God did through one ordinary, flawed person, with every date, quote and number sourced.</p>`;
-  await writeFile(join(OUT, 'index.html'), page({ title: 'Awestruck Today', body: home }));
+  await writeFile(join(OUT, 'index.html'), page({ title: 'Awestruck Today', body: home, showHeadline: !!latest }));
   await writeFile(join(OUT, '404.html'), page({ title: 'Not found — Awestruck Today', body: `<h1>Page not found</h1><p><a href="${BASE}/today/">Go to today's story</a></p>`, noindex: true }));
   await writeFile(join(OUT, '.nojekyll'), '');
+  await writeFile(join(OUT, 'favicon.svg'), FAVICON);
 
   console.log(`Built ${live.length} of ${all.length} entries for ${TODAY} (Eastern) into ${OUT}/`);
 }
