@@ -1,0 +1,56 @@
+name: Build entry assets
+
+# Runs when an entry file is added or changed, or by hand from the Actions tab.
+on:
+  push:
+    paths: ["content/entries/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Get brand fonts (Instrument Serif, OFL)
+        run: |
+          mkdir -p fonts
+          for f in InstrumentSerif-Regular.ttf InstrumentSerif-Italic.ttf; do
+            [ -f fonts/$f ] || curl -sSfL -o fonts/$f "https://github.com/google/fonts/raw/main/ofl/instrumentserif/$f"
+          done
+          sudo apt-get install -y fonts-inter || true
+
+      - name: Fetch cleared media (license-checked)
+        run: |
+          for f in content/entries/*.json; do python scripts/fetch_media.py "$f"; done
+
+      - name: Render cards
+        run: |
+          sed -i 's#executable_path="/usr/bin/google-chrome", ##' renderer/render.py
+          for f in content/entries/*.json; do python renderer/render.py "$f" out; done
+
+      - name: Save fonts and cleared media to the repo
+        run: |
+          git config user.name "awestruck-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add fonts assets
+          git diff --cached --quiet || (git commit -m "Add fonts and cleared media [skip ci]" && git push)
+
+      - name: Upload rendered cards (download from this run's page)
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-cards
+          path: out/
+          retention-days: 30

@@ -13,6 +13,12 @@ This repo builds awestrucktoday.com: one sourced "On This Day in Christian Histo
 
 Run locally: `node scripts/test-build.mjs && node scripts/build.mjs`
 
+## Social assets
+
+- `.github/workflows/build-entry.yml` runs when an entry file is added or changed. It downloads each listed image **only if its license is on the free-to-use list** (public domain, CC0, no known restrictions, CC BY, CC BY-SA), saves it with its credits to `assets/<ID>/` (the rights log), and renders the carousel slides and lock screen.
+- `renderer/render.py` holds the brand templates (HTML rendered to PNG); `scripts/fetch_media.py` does the license-checked downloads; `fonts/` holds Instrument Serif (SIL Open Font License).
+- The entry format is being unified between the site build and the renderer before the first batch.
+
 ## Rights
 
 All rights reserved. This repo has no open-source or Creative Commons license on purpose: some quoted Bible translations (ESV) may not appear in Creative Commons–licensed publications. Archival images are used under their own licenses, credited on each entry.
