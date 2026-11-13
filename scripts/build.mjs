@@ -53,6 +53,9 @@ const RAYS = Array.from({ length: 24 }, (_, i) => {
 }).join('');
 const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="#121821" stroke="#E9C77B" stroke-width="6"/><g stroke="#E9C77B" stroke-width="3" stroke-linecap="round" opacity="0.4">${RAYS}</g><text x="100" y="131" text-anchor="middle" font-family="Instrument Serif, Georgia, serif" font-size="104" fill="#F1EEE8">A<tspan font-style="italic" font-size="70" fill="#E9C77B" dx="2">t</tspan></text></svg>`;
 
+// Cloudflare Web Analytics (free, cookieless). The token is public by design.
+const CF_ANALYTICS = `<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f15c7169aefc45a6abc5c632e642ae7b"}'></script><!-- End Cloudflare Web Analytics -->`;
+
 function page({ title, body, description = HEADLINE, accent = '#E9C77B', noindex = false, showHeadline = true }) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -82,6 +85,7 @@ h1 em{color:var(--accent)}
 .headline{color:var(--mist);font-size:16px;margin-top:8px}
 footer{margin-top:64px;border-top:1px solid var(--line);padding-top:16px;color:var(--slate);font-size:14px}
 </style>
+${CF_ANALYTICS}
 </head>
 <body><div class="wrap">
 <header><a class="mark" href="${BASE}/" aria-label="Awestruck Today home">${MARK}<span>Awestruck <em>Today</em></span></a></header>
