@@ -91,7 +91,7 @@ def slide(e, s, n, total):
     .lm{{font:400 34px {SANS};color:{GOLD};margin-top:60px}}
     .head{{font:400 26px/1.4 {SANS};color:{MIST};margin-top:24px;max-width:800px}}
     """
-    k, label, foot = s["kind"], e["theme"], f'<span>{n} / {total}</span><span>awestrucktoday.com</span>'
+    k, label, foot = s["kind"], e["theme"], f'<span>{n} / {total}</span><span>awestrucktoday.org</span>'
     if k == "image":
         inner = (f'<div style="height:520px;background:{PANEL};border:1px solid {LINE}">{frame_inner(s.get("image"), c, BASE)}</div>'
                  f'<div style="font:400 18px {SANS};color:{SLATE};margin:10px 0 36px">{s["image_label"]}</div>'
@@ -108,7 +108,7 @@ def slide(e, s, n, total):
     elif k == "verse":
         inner = f'<div class="pre">{s["pre"]}</div><div class="verse">{s["text"]}</div><div class="ref">{s["ref"].upper()}</div>'
     else:  # end / Learn More slide
-        inner = (f'<div class="body">{s["prompt"]}</div><div class="lm">Learn more at awestrucktoday.com</div>'
+        inner = (f'<div class="body">{s["prompt"]}</div><div class="lm">Learn more at awestrucktoday.org</div>'
                  f'<div class="head">Every day, a true story of what God did through ordinary, flawed people to shape the world.</div>')
         foot = '<span>Comment below ↓</span><span>Share this story</span>'
     return page(css, top(label, c) + f'<div class="center">{inner}</div><div class="footer">{foot}</div>')
@@ -124,7 +124,7 @@ def lock(e):
     """
     body = (f'<div class="wrap"><div class="q">' + "".join(f"<div>{l}</div>" for l in e["lock_quote"]) +
             f'</div><div class="credit">{e["lock_credit"]}</div></div><div class="motif">{motif_svg(c, 1080, 300)}</div>'
-            f'<div class="m"><span class="mark" style="font-size:30px">Awestruck <i>Today</i></span><span>awestrucktoday.com</span></div>')
+            f'<div class="m"><span class="mark" style="font-size:30px">Awestruck <i>Today</i></span><span>awestrucktoday.org</span></div>')
     return page(css, body, 1920)
 
 def apply_credits(e):

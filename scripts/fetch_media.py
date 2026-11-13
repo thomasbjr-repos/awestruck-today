@@ -10,7 +10,7 @@ reported, so it shows up as a ⚠ for Thomas. Credits are written to assets/<ID>
 """
 import json, re, sys, pathlib, urllib.parse, urllib.request
 
-UA = "AwestruckTodayBot/1.0 (https://awestrucktoday.com; media pipeline)"
+UA = "AwestruckTodayBot/1.0 (https://awestrucktoday.org; media pipeline)"
 ALLOWED = [r"^cc0", r"^public domain", r"^pdm", r"^no known restrictions",
            r"^cc[ -]by(-sa)?[ -]?\d", r"^cc[ -]by(-sa)?$"]
 BLOCKED = [r"\bnc\b", r"\bnd\b", r"non-?commercial", r"no ?deriv", r"editorial", r"fair use"]
