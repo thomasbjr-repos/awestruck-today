@@ -1,0 +1,143 @@
+---
+// One entry page: /MM-DD/short-name/. Only approved entries whose date has arrived
+// (midnight Eastern) are built at all, so future pages don't exist on the site.
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import ThemeIcon from '../../components/ThemeIcon.astro';
+import Signup from '../../components/Signup.astro';
+import { liveEntries, entryPath, THEME_KEY, DAYS, shortStamp, longDate, inline } from '../../lib/entries.mjs';
+
+export function getStaticPaths() {
+  const live = liveEntries();
+  return live.map((entry, i) => ({
+    params: { mmdd: entry.date.slice(5), slug: entry.slug },
+    props: { entry, prev: live[i - 1] || null, next: live[i + 1] || null },
+  }));
+}
+
+const { entry: e, prev, next } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const key = THEME_KEY[e.theme];
+const themeName = DAYS.find(d => d.key === key).theme;
+const label = e.holy_day || themeName;
+const stamp = e.window ? `This week · ${shortStamp(e.event_date || e.date)}` : `On this day · ${shortStamp(e.date)}`;
+const img = e.lead_image || null;
+const numbers = (e.numbers || []).slice(0, 3);
+const story = e.story || [];
+const youtube = e.youtube_id ? `https://www.youtube-nocookie.com/embed/${encodeURIComponent(e.youtube_id)}?rel=0&playsinline=1` : null;
+---
+<Base title={`${e.title} — Awestruck Today`} description={e.summary || e.title} day={key} image={img?.src}>
+  <section class="hero band">
+    {img ? (
+      <div class="hero-media kb" style={img.focus ? `--focus:${img.focus}` : undefined}>
+        <img src={img.src} srcset={img.srcset} sizes="100vw" alt={img.alt || ''} fetchpriority="high" decoding="async" />
+      </div>
+    ) : (
+      <div class="hero-media ph" aria-hidden="true"></div>
+    )}
+    <div class="grain" aria-hidden="true"></div>
+    <div class="scrim" aria-hidden="true"></div>
+    <Header current="today" />
+    <div class="hero-body wrap">
+      <div class="kicker r1"><ThemeIcon day={key} />{stamp} · {label}</div>
+      <h1 class="hook sm serif r2" set:html={inline(e.hook || e.title)} />
+      <div class="dateline r3">{e.dateline || `${e.person} · ${longDate(e.date)}`}</div>
+      <div class="ctas r4">
+        <a href="#story" class="btn-gold glow">Read the story ↓</a>
+        {youtube && <a href="#see" class="btn-glass"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z" fill="currentColor" /></svg>Play the reel</a>}
+      </div>
+    </div>
+    {img?.credit && <span class="hero-credit" set:html={inline(img.credit)} />}
+  </section>
+
+  {numbers.length > 0 && (
+    <div class="wrap">
+      <section class="btn-box" style={`--n:${numbers.length}`} aria-label="By the Numbers">
+        <span class="kicker">By the Numbers</span>
+        {numbers.map((n, i) => (
+          <div class="fig">
+            <span class:list={['n serif', i === 0 && 'glowtext']}>{n.prefix && <i>{n.prefix}</i>}{n.value}</span>
+            <span class="m" set:html={inline(n.meaning)} />
+            <a href="#sources">{[n.as_of, `Tier ${n.tier}${n.reported ? ', reported' : ''}`].filter(Boolean).join(' · ')} · source ↓</a>
+          </div>
+        ))}
+      </section>
+    </div>
+  )}
+
+  <article id="story" class="story read">
+    {story.map((p, i) => (
+      p.quote
+        ? <blockquote class="pull serif"><span set:html={inline(`“${p.quote}”`)} /><cite set:html={inline(p.cite || '')} /></blockquote>
+        : <p class:list={[i === 0 && 'lede']} set:html={inline(p)} />
+    ))}
+    {e.html && <Fragment set:html={e.html} />}
+    {e.quote && !story.some(p => p.quote) && (
+      <blockquote class="pull serif"><span set:html={inline(`“${e.quote.text}”`)} /><cite set:html={inline([e.quote.source, e.quote.tier && `Tier ${e.quote.tier}`].filter(Boolean).join(' · '))} /></blockquote>
+    )}
+    {e.scripture && (
+      <div class="scripture">
+        <span class="kicker">Scripture{e.scripture.note ? ` · ${e.scripture.note}` : ''}</span>
+        <p class="serif" set:html={inline(`“${e.scripture.text}”`)} />
+        <span>{e.scripture.ref} · {e.scripture.translation}</span>
+      </div>
+    )}
+  </article>
+
+  {(youtube || (e.extras || []).length > 0) && (
+    <section id="see" class="seehear wrap sr">
+      <h2 class="serif">See &amp; Hear</h2>
+      <div class="sh-grid">
+        {youtube && (
+          <div class="reel band">
+            <iframe src={youtube} title={`Reel: ${e.title}`} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        )}
+        <div class="extras">
+          {(e.extras || []).map(x => (
+            <a href={x.url} class="extra" target="_blank" rel="noopener"><span class="t">{x.type}</span><span class="d" set:html={inline(x.title)} />{x.credit && <span class="c">{x.credit}</span>}</a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {(e.why || e.prompt) && (
+    <section class="sec read sr">
+      <h2 class="serif">Why it matters today</h2>
+      {e.why && <p set:html={inline(e.why)} />}
+      {e.prompt && <p class="prompt"><b>Talk about it:</b> {e.prompt}</p>}
+    </section>
+  )}
+
+  {(e.sources || []).length > 0 && (
+    <section id="sources" class="sec read sr">
+      <h2 class="serif">Sources</h2>
+      <div class="tiers"><span class="tier a">A · Verified</span><span class="tier">B · Corroborated</span><span class="tier">C · Traditional</span></div>
+      <ol class="srclist">
+        {e.sources.map(s => (
+          <li>{s.url ? <a href={s.url} target="_blank" rel="noopener" set:html={inline(s.text)} /> : <span set:html={inline(s.text)} />}{s.tier && ` · Tier ${s.tier}`}</li>
+        ))}
+      </ol>
+      {e.confidence && <p class="confidence" set:html={inline(e.confidence)} />}
+      {(e.scripture_credits || []).map(c => <p class="confidence">{c}</p>)}
+    </section>
+  )}
+
+  <Signup />
+
+  <nav class="entry-nav read" aria-label="More stories">
+    {prev ? <a href={`${base}${entryPath(prev)}`} class="btn-line">← {shortStamp(prev.date)}</a> : <a href={`${base}/archive/`} class="btn-line">Archive</a>}
+    <button type="button" class="btn-line" id="share" data-title={e.title}>Share this story</button>
+  </nav>
+  <script is:inline>
+    (function () {
+      var b = document.getElementById('share');
+      b.addEventListener('click', function () {
+        var data = { title: b.dataset.title, url: location.href.split('?')[0] };
+        if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+        navigator.clipboard && navigator.clipboard.writeText(data.url).then(function () { b.textContent = 'Link copied'; });
+      });
+    })();
+  </script>
+</Base>
