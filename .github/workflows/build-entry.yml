@@ -1,9 +1,10 @@
 name: Build entry assets
 
-# Runs when an entry file is added or changed, or by hand from the Actions tab.
+# Runs when an entry file (.json) is added or changed, or by hand from the Actions tab.
+# Changes to other files in content/entries (like the README) don't start it.
 on:
   push:
-    paths: ["content/entries/**"]
+    paths: ["content/entries/**.json"]
   workflow_dispatch:
 
 permissions:
@@ -15,16 +16,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # With no entries yet, the remaining steps are skipped and the run passes.
+      - name: Check for entries
+        id: entries
+        run: |
+          if ls content/entries/*.json >/dev/null 2>&1; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No entry files in content/entries yet; nothing to build."
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.entries.outputs.found == 'true'
         with:
           python-version: "3.12"
 
       - name: Install tools
+        if: steps.entries.outputs.found == 'true'
         run: |
           pip install playwright
           python -m playwright install --with-deps chromium
 
       - name: Get brand fonts (Instrument Serif, OFL)
+        if: steps.entries.outputs.found == 'true'
         run: |
           mkdir -p fonts
           for f in InstrumentSerif-Regular.ttf InstrumentSerif-Italic.ttf; do
@@ -33,15 +48,18 @@ jobs:
           sudo apt-get install -y fonts-inter || true
 
       - name: Fetch cleared media (license-checked)
+        if: steps.entries.outputs.found == 'true'
         run: |
           for f in content/entries/*.json; do python scripts/fetch_media.py "$f"; done
 
       - name: Render cards
+        if: steps.entries.outputs.found == 'true'
         run: |
           sed -i 's#executable_path="/usr/bin/google-chrome", ##' renderer/render.py
           for f in content/entries/*.json; do python renderer/render.py "$f" out; done
 
       - name: Save fonts and cleared media to the repo
+        if: steps.entries.outputs.found == 'true'
         run: |
           git config user.name "awestruck-bot"
           git config user.email "actions@users.noreply.github.com"
@@ -49,6 +67,7 @@ jobs:
           git diff --cached --quiet || (git commit -m "Add fonts and cleared media [skip ci]" && git push)
 
       - name: Upload rendered cards (download from this run's page)
+        if: steps.entries.outputs.found == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: rendered-cards
