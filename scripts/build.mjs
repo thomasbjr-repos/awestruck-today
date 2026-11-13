@@ -58,6 +58,40 @@ export function weekSection(today) {
   return `<section class="week" aria-labelledby="week-h"><h2 id="week-h">Seven days, seven themes</h2><p class="sub">Each day of the week has its own theme, and every story follows one person. The thread through all seven: faith built culture.</p><ul>${rows}</ul></section>`;
 }
 
+// Where Awestruck Today lives. Website, email and Substack launch November 2026; socials Dec 13, 2026.
+// Set a channel's url once its account exists; until then it shows without a link.
+const ICON_DIR = new URL('../brand-icons/', import.meta.url);
+const ENVELOPE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>';
+export const CHANNELS = [
+  { group: 'now', name: 'Website', handle: 'awestrucktoday.org', note: "Every day's full story, with sources", icon: 'site', url: '/' },
+  { group: 'now', name: 'Email', handle: 'Weekly digest', note: "The week's stories in your inbox", icon: 'email', url: null },
+  { group: 'now', name: 'Substack', handle: 'Awestruck Today', note: 'Read and subscribe on Substack', icon: 'substack', url: null },
+  { group: 'later', name: 'Instagram', handle: '@awestrucktoday', icon: 'instagram', url: null },
+  { group: 'later', name: 'Facebook', handle: 'Awestruck Today', icon: 'facebook', url: null },
+  { group: 'later', name: 'X', handle: '@awestrucktoday', icon: 'x', url: null },
+  { group: 'later', name: 'TikTok', handle: '@awestrucktoday', icon: 'tiktok', url: null },
+  { group: 'later', name: 'YouTube', handle: '@awestrucktoday', icon: 'youtube', url: null },
+];
+
+async function iconSvg(name) {
+  if (name === 'email') return ENVELOPE;
+  if (name === 'site') return MARK.replace('class="sun"', 'class="sun" style="width:100%"');
+  const raw = await readFile(new URL(`${name}.svg`, ICON_DIR), 'utf8');
+  return raw.replace(/<title>.*?<\/title>/, '').replace('<svg ', '<svg fill="currentColor" aria-hidden="true" ');
+}
+
+export async function channelsSection() {
+  const card = async c => {
+    const inner = `<span class="ico ${c.icon}">${await iconSvg(c.icon)}</span><span class="cname">${esc(c.name)}</span><span class="chandle">${esc(c.handle)}</span>${c.note ? `<span class="cnote">${esc(c.note)}</span>` : ''}`;
+    const href = c.url && c.url.startsWith('/') ? BASE + c.url : c.url;
+    return href ? `<li><a class="ch" href="${esc(href)}">${inner}</a></li>` : `<li><div class="ch">${inner}</div></li>`;
+  };
+  const list = async g => (await Promise.all(CHANNELS.filter(c => c.group === g).map(card))).join('');
+  return `<section class="channels" aria-labelledby="ch-h"><h2 id="ch-h">Where to find us</h2>
+<p class="when"><span>Launching November 2026</span></p><ul class="now">${await list('now')}</ul>
+<p class="when"><span>Coming Dec 13</span></p><ul class="later">${await list('later')}</ul></section>`;
+}
+
 const HEADLINE = 'Every day, a true story of what God did through ordinary, flawed people to shape the world.';
 
 const MARK = `<svg class="sun" viewBox="0 0 200 140" fill="none" stroke="#E9C77B" stroke-width="5" stroke-linecap="round" aria-hidden="true"><line x1="125.7" y1="88.4" x2="163.4" y2="83.1"/><line x1="124.2" y1="82.4" x2="153.9" y2="70.6"/><line x1="121.2" y1="77.0" x2="163.6" y2="46.9"/><line x1="117.1" y1="72.4" x2="138.1" y2="48.2"/><line x1="111.9" y1="68.9" x2="135.8" y2="22.7"/><line x1="106.1" y1="66.7" x2="113.7" y2="35.6"/><line x1="100.0" y1="66.0" x2="100.0" y2="14.0"/><line x1="93.9" y1="66.7" x2="86.3" y2="35.6"/><line x1="88.1" y1="68.9" x2="64.2" y2="22.7"/><line x1="82.9" y1="72.4" x2="61.9" y2="48.2"/><line x1="78.8" y1="77.0" x2="36.4" y2="46.9"/><line x1="75.8" y1="82.4" x2="46.1" y2="70.6"/><line x1="74.3" y1="88.4" x2="36.6" y2="83.1"/><path d="M100 63 L103.6 75.4 L116 79 L103.6 82.6 L100 92 L96.4 82.6 L84 79 L96.4 75.4 Z" fill="#E9C77B" stroke="none"/><path d="M24 92 H176"/><path d="M50 105 H150"/><path d="M68 116 H132"/><path d="M86 127 H114"/></svg>`;
@@ -110,6 +144,22 @@ h2{font:400 32px/1.1 'Instrument Serif',Georgia,serif;margin:56px 0 4px}
 .day .blurb{color:var(--mist);font-size:15px}
 .day.now{border-color:var(--c);box-shadow:0 0 0 1px var(--c) inset}
 @media(max-width:520px){.day{grid-template-columns:1fr}.day .dow{grid-row:auto}}
+.channels ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.channels .now{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.channels .later{grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+.when{margin:28px 0 12px;font:500 12px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.when+ul.later,.later .ch{color:var(--mist)}
+.ch{display:flex;flex-direction:column;gap:4px;height:100%;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--ivory);text-decoration:none}
+a.ch:hover{border-color:var(--gold)}
+.ch .ico{display:block;width:28px;height:28px;margin-bottom:8px;color:var(--gold)}
+.ch .ico svg{width:100%;height:100%}
+.later .ch .ico{width:24px;height:24px;color:var(--mist)}
+.ch .cname{font:400 22px/1.2 'Instrument Serif',Georgia,serif}
+.ch .chandle{font-size:14px;color:var(--mist)}
+.ch .cnote{font-size:14px;color:var(--slate)}
+.later .ch{padding:14px 10px}
+.later .ch .cname{font-size:19px}.later .ch .chandle{font-size:11.5px;letter-spacing:-.01em;color:var(--slate);overflow-wrap:anywhere}
+.ch .ico.site{width:48px}
 footer{margin-top:64px;border-top:1px solid var(--line);padding-top:16px;color:var(--slate);font-size:14px}
 </style>
 ${CF_ANALYTICS}
@@ -185,9 +235,9 @@ ${e.html || ''}`;
 
   const home = latest
     ? `<h1>Today's story</h1><p><a href="${BASE}${entryPath(target)}">${esc(target.title)}</a></p>`
-    : `<h1>Launching <em>Nov 28</em></h1>
+    : `<h1>Launching <em>November 2026</em></h1>
 <p>One true story every day of what God did through one ordinary, flawed person, with every date, quote and number sourced.</p>`;
-  await writeFile(join(OUT, 'index.html'), page({ title: 'Awestruck Today', body: home + weekSection(TODAY), showHeadline: !!latest }));
+  await writeFile(join(OUT, 'index.html'), page({ title: 'Awestruck Today', body: home + weekSection(TODAY) + await channelsSection(), showHeadline: !!latest }));
   await writeFile(join(OUT, '404.html'), page({ title: 'Not found — Awestruck Today', body: `<h1>Page not found</h1><p><a href="${BASE}/today/">Go to today's story</a></p>`, noindex: true }));
   await writeFile(join(OUT, '.nojekyll'), '');
   await writeFile(join(OUT, 'favicon.svg'), FAVICON);
