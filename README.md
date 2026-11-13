@@ -2,7 +2,7 @@
 
 *Every day, a true story of what God did through ordinary, flawed people to shape the world.*
 
-This repo builds awestrucktoday.org: one sourced "On This Day in Christian History" entry a day.
+This repo builds awestrucktoday.org: one sourced "On This Day in Christian History" entry a day. Branches and pull requests get private previews on Cloudflare Pages.
 
 ## How it works
 
