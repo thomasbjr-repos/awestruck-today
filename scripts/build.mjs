@@ -41,6 +41,23 @@ const THEMES = {
   'Entrepreneurs & Builders': '#9DBF5A',
 };
 
+// The weekly rhythm: one theme per weekday (Concept Brief). Architecture dropped from Thursday on Nov 11, 2026.
+export const WEEK = [
+  ['Sunday', 'Preachers & Sermons', 'Preachers, the sermons that stopped people in their tracks, and the revivals that followed'],
+  ['Monday', 'Missions & Movements', 'Missionaries, people who founded works of mercy, and the ones who started movements of prayer'],
+  ['Tuesday', 'Books & Writings', 'Theologians, novelists, apologists and letter-writers whose words still travel'],
+  ['Wednesday', 'Music & Hymns', 'Hymn writers, composers and worship artists, and the songs they first gave the church'],
+  ['Thursday', 'Arts & Film', 'Painters, sculptors, illustrators, photographers and filmmakers'],
+  ['Friday', 'Science, Education & Thinkers', 'Scientists, university founders and philosophers who studied the world God made'],
+  ['Saturday', 'Entrepreneurs & Builders', 'Business founders, philanthropists and workplace innovators who built with faith'],
+];
+
+export function weekSection(today) {
+  const dow = new Date(today + 'T12:00:00Z').getUTCDay();
+  const rows = WEEK.map(([day, theme, blurb], i) => `<li class="day${i === dow ? ' now' : ''}" style="--c:${THEMES[theme]}"><span class="dow">${day}${i === dow ? ' <b>· Today</b>' : ''}</span><span class="theme">${esc(theme)}</span><span class="blurb">${esc(blurb)}</span></li>`).join('');
+  return `<section class="week" aria-labelledby="week-h"><h2 id="week-h">Seven days, seven themes</h2><p class="sub">Each day of the week has its own theme, and every story follows one person. The thread through all seven: faith built culture.</p><ul>${rows}</ul></section>`;
+}
+
 const HEADLINE = 'Every day, a true story of what God did through ordinary, flawed people to shape the world.';
 
 const MARK = `<svg class="sun" viewBox="0 0 200 140" fill="none" stroke="#E9C77B" stroke-width="5" stroke-linecap="round" aria-hidden="true"><line x1="125.7" y1="88.4" x2="163.4" y2="83.1"/><line x1="124.2" y1="82.4" x2="153.9" y2="70.6"/><line x1="121.2" y1="77.0" x2="163.6" y2="46.9"/><line x1="117.1" y1="72.4" x2="138.1" y2="48.2"/><line x1="111.9" y1="68.9" x2="135.8" y2="22.7"/><line x1="106.1" y1="66.7" x2="113.7" y2="35.6"/><line x1="100.0" y1="66.0" x2="100.0" y2="14.0"/><line x1="93.9" y1="66.7" x2="86.3" y2="35.6"/><line x1="88.1" y1="68.9" x2="64.2" y2="22.7"/><line x1="82.9" y1="72.4" x2="61.9" y2="48.2"/><line x1="78.8" y1="77.0" x2="36.4" y2="46.9"/><line x1="75.8" y1="82.4" x2="46.1" y2="70.6"/><line x1="74.3" y1="88.4" x2="36.6" y2="83.1"/><path d="M100 63 L103.6 75.4 L116 79 L103.6 82.6 L100 92 L96.4 82.6 L84 79 L96.4 75.4 Z" fill="#E9C77B" stroke="none"/><path d="M24 92 H176"/><path d="M50 105 H150"/><path d="M68 116 H132"/><path d="M86 127 H114"/></svg>`;
@@ -83,6 +100,16 @@ h1{font:400 clamp(40px,8vw,64px)/1.05 'Instrument Serif',Georgia,serif;margin:40
 h1 em{color:var(--accent)}
 .dateline{color:var(--mist);font-size:16px;border-left:3px solid var(--accent);padding-left:12px}
 .headline{color:var(--mist);font-size:16px;margin-top:8px}
+h2{font:400 32px/1.1 'Instrument Serif',Georgia,serif;margin:56px 0 4px}
+.week .sub{color:var(--slate);font-size:15px;margin:0 0 20px}
+.week ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.day{display:grid;grid-template-columns:110px 1fr;column-gap:16px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:6px}
+.day .dow{grid-row:span 2;font:500 12px/1.6 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.day .dow b{color:var(--c);font-weight:500}
+.day .theme{font:400 22px/1.2 'Instrument Serif',Georgia,serif;color:var(--c)}
+.day .blurb{color:var(--mist);font-size:15px}
+.day.now{border-color:var(--c);box-shadow:0 0 0 1px var(--c) inset}
+@media(max-width:520px){.day{grid-template-columns:1fr}.day .dow{grid-row:auto}}
 footer{margin-top:64px;border-top:1px solid var(--line);padding-top:16px;color:var(--slate);font-size:14px}
 </style>
 ${CF_ANALYTICS}
@@ -160,7 +187,7 @@ ${e.html || ''}`;
     ? `<h1>Today's story</h1><p><a href="${BASE}${entryPath(target)}">${esc(target.title)}</a></p>`
     : `<h1>Launching <em>Nov 28</em></h1>
 <p>One true story every day of what God did through one ordinary, flawed person, with every date, quote and number sourced.</p>`;
-  await writeFile(join(OUT, 'index.html'), page({ title: 'Awestruck Today', body: home, showHeadline: !!latest }));
+  await writeFile(join(OUT, 'index.html'), page({ title: 'Awestruck Today', body: home + weekSection(TODAY), showHeadline: !!latest }));
   await writeFile(join(OUT, '404.html'), page({ title: 'Not found — Awestruck Today', body: `<h1>Page not found</h1><p><a href="${BASE}/today/">Go to today's story</a></p>`, noindex: true }));
   await writeFile(join(OUT, '.nojekyll'), '');
   await writeFile(join(OUT, 'favicon.svg'), FAVICON);
