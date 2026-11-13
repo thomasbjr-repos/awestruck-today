@@ -15,6 +15,8 @@ The site is built with **[Astro](https://astro.build)** (free) as plain static p
 - `.github/workflows/deploy.yml` installs Astro, runs the checks, builds and deploys on every push to `main` and just after midnight Eastern every day. Pull requests build a downloadable preview instead of deploying.
 - `scripts/test-build.mjs` checks the release rule and builds a test copy of the site (time zone rollover; future and unapproved entries stay hidden; /today, Archive and pages exist). The deploy stops if it fails.
 
+**Previews (Cloudflare Pages, free):** every branch and pull request also builds on Cloudflare Pages (build command `npm run build`, output folder `site`, `NODE_VERSION=22`). Those builds carry a "Preview" badge and a no-index tag; the real site stays on GitHub Pages.
+
 Run locally (needs Node 20+): `npm install`, then `npm run dev` to preview at http://localhost:4321, `npm test` for the checks, `npm run build` for the real build. Pretend it's another day with `AT_TODAY=2026-12-13 npm run dev`.
 
 ## Social assets
