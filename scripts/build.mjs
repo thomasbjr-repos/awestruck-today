@@ -142,7 +142,7 @@ ${e.html || ''}`;
 
   const home = latest
     ? `<h1>Today's story</h1><p><a href="${BASE}${entryPath(target)}">${esc(target.title)}</a></p>`
-    : `<h1>Launching <em>Tuesday, December 1, 2026</em></h1>
+    : `<h1>Launching <em>Saturday, November 28, 2026</em></h1>
 <p>One true story every day of what God did through one ordinary, flawed person, with every date, quote and number sourced.</p>`;
   await writeFile(join(OUT, 'index.html'), page({ title: 'Awestruck Today', body: home }));
   await writeFile(join(OUT, '404.html'), page({ title: 'Not found — Awestruck Today', body: `<h1>Page not found</h1><p><a href="${BASE}/today/">Go to today's story</a></p>`, noindex: true }));
