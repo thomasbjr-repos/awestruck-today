@@ -91,6 +91,9 @@ html.at,html.at body{margin:0}
 .hero{position:relative;height:min(100svh,760px);min-height:600px;overflow:hidden;background:#121821;display:flex;flex-direction:column}
 @media (min-width:600px){.hero{height:min(100svh,900px);min-height:640px}}
 @media (min-width:1600px){.hero{height:min(100svh,1040px)}}
+/* Coming-soon hero (no photo yet): sized to its content instead of the full-screen hero, so there is no empty band at the top. */
+.hero.compact{height:auto;min-height:0}
+.hero.compact .hero-body{margin-top:clamp(36px,7vw,96px);padding-bottom:clamp(48px,7vw,88px)}
 .hero-media{position:absolute;inset:-8%;display:flex;align-items:center;justify-content:center}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:var(--focus,50% 30%)}
 .hero-media svg{width:min(120vw,760px);height:auto;opacity:.9}
