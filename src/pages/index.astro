@@ -1,0 +1,150 @@
+---
+// Homepage. Before launch (no live entries): the coming-soon page with the seven themes and channels.
+// After launch: today's story full-bleed, its key number, this week's rail, the quote and signup.
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import ThemeIcon from '../components/ThemeIcon.astro';
+import Signup from '../components/Signup.astro';
+import { liveEntries, today, entryPath, THEME_KEY, DAYS, shortStamp, longDate, addDays, weekdayKey, inline } from '../lib/entries.mjs';
+import { CHANNELS, MARK } from '../lib/brand.mjs';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const TODAY = today();
+const live = liveEntries();
+const target = live.filter(e => e.date === TODAY).at(-1) || live.at(-1) || null;
+const key = target ? THEME_KEY[target.theme] : weekdayKey(TODAY);
+const isToday = target && target.date === TODAY;
+
+// This week, Sunday to Saturday.
+const sunday = addDays(TODAY, -new Date(TODAY + 'T12:00:00Z').getUTCDay());
+const week = DAYS.map((d, i) => {
+  const date = addDays(sunday, i);
+  const e = live.find(x => x.date === date);
+  return { ...d, date, entry: e, isToday: date === TODAY, locked: date > TODAY };
+});
+
+// Channel icons (brand-icons/ for platforms).
+const ENVELOPE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>';
+const icon = name => {
+  if (name === 'email') return ENVELOPE;
+  if (name === 'site') return MARK;
+  const raw = readFileSync(join(process.cwd(), 'brand-icons', `${name}.svg`), 'utf8');
+  return raw.replace(/<title>.*?<\/title>/, '').replace('<svg ', '<svg fill="currentColor" aria-hidden="true" ');
+};
+const channels = CHANNELS.map(c => ({ ...c, svg: icon(c.icon), href: c.url && c.url.startsWith('/') ? `${base}${c.url}` : c.url }));
+const img = target?.lead_image;
+const stat = target?.numbers?.[0];
+---
+<Base title={target ? `${target.title} — Awestruck Today` : 'Awestruck Today'} description={target?.summary} day={key} image={img?.src}>
+  {target ? (
+    <section class="hero band">
+      {img ? (
+        <div class="hero-media kb" style={img.focus ? `--focus:${img.focus}` : undefined}>
+          <img src={img.src} srcset={img.srcset} sizes="100vw" alt={img.alt || ''} fetchpriority="high" decoding="async" />
+        </div>
+      ) : <div class="hero-media ph" aria-hidden="true"></div>}
+      <div class="grain" aria-hidden="true"></div>
+      <div class="scrim" aria-hidden="true"></div>
+      <Header current="today" />
+      <div class="hero-body wrap">
+        <div class="kicker r1"><ThemeIcon day={key} />{isToday ? `On this day · ${shortStamp(target.date)}` : `Latest · ${shortStamp(target.date)}`} · {target.holy_day || target.theme}</div>
+        <h1 class="hook serif r2" set:html={inline(target.hook || target.title)} />
+        <div class="dateline r3">{target.dateline || `${target.person} · ${longDate(target.date)}`}</div>
+        <div class="ctas r4">
+          <a href={`${base}${entryPath(target)}`} class="btn-gold glow">Read the full story →</a>
+          {target.youtube_id && <a href={`${base}${entryPath(target)}#see`} class="btn-glass"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z" fill="currentColor" /></svg>Play the reel</a>}
+        </div>
+      </div>
+      <div class="cue" aria-hidden="true"><span></span></div>
+      {img?.credit && <span class="hero-credit" set:html={inline(img.credit)} />}
+    </section>
+  ) : (
+    <section class="hero compact band">
+      <div class="hero-media ph" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="scrim" aria-hidden="true"></div>
+      <Header current="today" />
+      <div class="hero-body wrap">
+        <div class="kicker r1">On This Day in Christian History</div>
+        <h1 class="hook serif r2">Launching <i>November 28, 2026.</i></h1>
+        <div class="dateline r3">Every day, a true story of what God did through one ordinary, flawed person, with every date, quote and number sourced.</div>
+        <div class="ctas r4"><a href="#themes" class="btn-gold glow">See the seven themes ↓</a></div>
+      </div>
+    </section>
+  )}
+
+  {stat && (
+    <section class="stat wrap sr">
+      <span class="stat-num serif glowtext">{stat.value}</span>
+      <div class="stat-copy">
+        <span class="kicker">By the Numbers</span>
+        <p class="stat-meaning serif">{stat.prefix && <i>{stat.prefix} </i>}<span set:html={inline(stat.meaning)} /></p>
+        <p class="src">{stat.source_short || 'Source'}{stat.as_of && `, ${stat.as_of}`} · Tier {stat.tier}</p>
+      </div>
+    </section>
+  )}
+
+  {target ? (
+    <section class="week sr" style="padding-top:clamp(40px,6vw,96px)">
+      <div class="week-head wrap">
+        <h2 class="serif">This week, <i>in seven lives</i></h2>
+        <span>Swipe or scroll sideways →</span>
+      </div>
+      <div class="rail">
+        {week.map(d => d.entry ? (
+          <a href={`${base}${entryPath(d.entry)}`} class:list={['wcard', d.isToday && 'today']} data-day={d.key}>
+            <span class="lbl"><ThemeIcon day={d.key} />{d.isToday ? 'TODAY' : d.dow.slice(0, 3).toUpperCase()} · {shortStamp(d.date)} · {(d.entry.holy_day || d.theme).toUpperCase()}</span>
+            <span class="nm serif">{d.entry.person}</span>
+          </a>
+        ) : (
+          <div class="wcard locked" data-day={d.key}>
+            <span class="lbl"><ThemeIcon day={d.key} />{d.dow.slice(0, 3).toUpperCase()} · {shortStamp(d.date)} · {d.theme.toUpperCase()}</span>
+            <span class="nm serif">{d.locked ? 'Unlocks at midnight' : 'No story this day'}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  ) : (
+    <section id="themes" class="sec wrap sr">
+      <h2 class="serif">Seven days, seven themes</h2>
+      <p style="color:var(--mist);max-width:60ch;margin-bottom:24px">Each day of the week has its own theme, and every story follows one person. The thread through all seven: faith built culture.</p>
+      <ul class="themes-list" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
+        {DAYS.map(d => (
+          <li data-day={d.key} style={d.key === key ? 'border-color:var(--theme)' : undefined}>
+            <ThemeIcon day={d.key} size="lg" />
+            <div><b>{d.theme}</b><span>{d.dow}{d.key === key ? ' · Today' : ''} · {d.blurb}</span></div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {target?.quote && (
+    <section class="quote sr">
+      <div class="wrap">
+        <blockquote class="serif" set:html={inline(`“${target.quote.text}”`)} />
+        <span class="src" set:html={inline([target.quote.source, target.quote.tier && `Tier ${target.quote.tier}`].filter(Boolean).join(' · '))} />
+      </div>
+    </section>
+  )}
+
+  <Signup />
+
+  <section class="sec wrap sr" aria-labelledby="ch-h">
+    <h2 id="ch-h" class="serif">Where to find us</h2>
+    <div class="extras">
+      {channels.map(c => {
+        const Tag = c.href ? 'a' : 'div';
+        return (
+          <Tag class="extra" href={c.href || undefined} style="min-height:0">
+            <span class="t">{c.group === 'now' ? 'LAUNCHING NOV 28' : 'COMING DEC 13'}</span>
+            <span class="d" style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;display:inline-flex" set:html={c.svg} />{c.name}</span>
+            <span class="c">{c.handle}</span>
+          </Tag>
+        );
+      })}
+    </div>
+  </section>
+</Base>

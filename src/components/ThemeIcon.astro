@@ -1,0 +1,6 @@
+---
+// One theme icon (Set A, "Line"). Decorative by default; pass `label` when it stands alone.
+import { iconSvg } from '../lib/icons.mjs';
+const { day, label, size } = Astro.props;
+---
+<span class:list={['ticon', size === 'lg' && 'lg']} data-day={day} set:html={iconSvg(day, label)} />

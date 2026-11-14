@@ -1,0 +1,50 @@
+---
+// Site header. Always sits inside a dark "band" (hero or page head), so the gold logo stays on Night.
+// The phone menu is a native popover: no JavaScript needed.
+import { MARK } from '../lib/brand.mjs';
+const { current = '' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const links = [
+  { href: `${base}today/`, label: 'Today', key: 'today' },
+  { href: `${base}archive/`, label: 'Archive', key: 'archive' },
+  { href: `${base}about/`, label: 'About', key: 'about' },
+  { href: `${base}what-we-believe/`, label: 'What We Believe', key: 'believe', menuOnly: true },
+];
+---
+<header class="hdr">
+  <a href={base} class="brand" aria-label="Awestruck Today home">
+    <Fragment set:html={MARK} />
+    <span class="serif">Awestruck <i>Today</i></span>
+  </a>
+  <nav class="pillnav" aria-label="Main">
+    {links.filter(l => !l.menuOnly).map(l => (
+      <a href={l.href} aria-current={l.key === current ? 'page' : undefined}>{l.label}</a>
+    ))}
+  </nav>
+  <div class="hdr-actions">
+    <a href="#signup" class="sub-btn">Subscribe</a>
+    <button type="button" class="icon-btn menu-btn" popovertarget="menu" aria-label="Open menu">
+      <svg width="18" height="12" viewBox="0 0 18 12" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M0 1h18M0 6h18M0 11h18" /></svg>
+    </button>
+  </div>
+</header>
+<div id="menu" class="sheet" popover>
+  <div class="sheet-top">
+    <span class="serif" style="font-size:24px">Awestruck <i style="color:#E9C77B">Today</i></span>
+    <button type="button" class="icon-btn" popovertarget="menu" popovertargetaction="hide" aria-label="Close menu">
+      <svg width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" /></svg>
+    </button>
+  </div>
+  <nav aria-label="Main">
+    {links.map(l => (
+      <a href={l.href} aria-current={l.key === current ? 'page' : undefined}>{l.label}</a>
+    ))}
+  </nav>
+  <a href="#signup" class="btn-gold">Get the daily story</a>
+</div>
+<script is:inline>
+  // Close the phone menu when one of its links is tapped.
+  document.querySelectorAll('#menu a').forEach(function (a) {
+    a.addEventListener('click', function () { var m = document.getElementById('menu'); if (m && m.hidePopover) m.hidePopover(); });
+  });
+</script>

@@ -1,0 +1,49 @@
+---
+// Every page: head, light/dark setup, analytics, footer band.
+// `day` (sun…sat) sets the page's theme color; omit it for gold.
+import '../styles/site.css';
+import Footer from '../components/Footer.astro';
+import { HEADLINE, CF_ANALYTICS_TOKEN } from '../lib/brand.mjs';
+const { title, description = HEADLINE, day, noindex = false, image } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+// Cloudflare Pages preview/staging builds set CF_PAGES; GitHub Pages (the real site) never does.
+const isPreview = Boolean(process.env.CF_PAGES);
+const previewBranch = process.env.CF_PAGES_BRANCH || 'preview';
+---
+<!doctype html>
+<html lang="en" class="at" data-day={day} data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {(noindex || isPreview) && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0B0F14" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Awestruck Today" />
+    {image && <meta property="og:image" content={image} />}
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script is:inline>
+      // Pick dark or light before the page paints: a saved choice, else the device setting.
+      (function () {
+        try {
+          var saved = localStorage.getItem('at-theme');
+          document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        } catch (e) {}
+      })();
+    </script>
+    <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: CF_ANALYTICS_TOKEN })}></script>
+  </head>
+  <body>
+    {isPreview && <div class="preview-flag" role="note">Preview · {previewBranch} · not the live site</div>}
+    <slot />
+    <Footer />
+  </body>
+</html>

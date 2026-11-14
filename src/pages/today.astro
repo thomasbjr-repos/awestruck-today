@@ -1,0 +1,20 @@
+---
+// /today always opens today's entry (Eastern). Before launch, or on a missed day,
+// it opens the most recent entry, or the homepage if there is none yet.
+import { liveEntries, today, entryPath } from '../lib/entries.mjs';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const live = liveEntries();
+const target = live.filter(e => e.date === today()).at(-1) || live.at(-1);
+const url = target ? `${base}${entryPath(target)}` : `${base}/`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Today — Awestruck Today</title>
+    <meta http-equiv="refresh" content={`0; url=${url}`} />
+    <link rel="canonical" href={url} />
+  </head>
+  <body><a href={url}>Today's story</a></body>
+</html>

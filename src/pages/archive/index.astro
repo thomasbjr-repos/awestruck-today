@@ -1,0 +1,81 @@
+---
+// The Archive: a calendar grid, newest month first. Published days link to their entry;
+// days ahead show "Unlocks at midnight". Theme chips dim the other days (tiny script below).
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import ThemeIcon from '../../components/ThemeIcon.astro';
+import { liveEntries, today, entryPath, THEME_KEY, DAYS, weekdayKey, monthsBetween, monthCells, monthLabel } from '../../lib/entries.mjs';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const TODAY = today();
+const live = liveEntries();
+const byDate = Object.fromEntries(live.map(e => [e.date, e]));
+const months = live.length ? monthsBetween(live[0].date, TODAY) : [];
+---
+<Base title="Archive — Awestruck Today" description="Every Awestruck Today story, by the day it happened.">
+  <section class="pagehead band">
+    <Header current="archive" />
+    <div class="wrap">
+      <span class="kicker">Every story, by the day it happened</span>
+      <h1 class="serif">The <i>Archive</i></h1>
+      <p>One true story for every day. Tap a day to read it; days ahead unlock at midnight Eastern.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    {months.length === 0 ? (
+      <section class="sec"><p style="color:var(--mist)">The first story arrives on November 28, 2026. Its day will appear here.</p></section>
+    ) : (
+      <Fragment>
+        <div class="arch-tools">
+          <span class="kicker" style="color:var(--slate)">{live.length} {live.length === 1 ? 'story' : 'stories'} so far</span>
+          <div class="chips" role="group" aria-label="Show one theme">
+            <button type="button" class="chip" data-pick="all" aria-pressed="true">All themes</button>
+            {DAYS.map(d => <button type="button" class="chip" data-pick={d.key} data-day={d.key} aria-pressed="false"><ThemeIcon day={d.key} />{d.short}</button>)}
+          </div>
+        </div>
+        {months.map(ym => (
+          <section aria-label={monthLabel(ym)}>
+            <div class="month-nav" style="padding-bottom:16px"><h2 class="serif" id={`m-${ym}`}>{monthLabel(ym)}</h2></div>
+            <ol class="cal">
+              {DAYS.map(d => <li class="dow-h" data-day={d.key} aria-hidden="true"><ThemeIcon day={d.key} />{d.dow.slice(0, 3)}<small>{d.theme}</small></li>)}
+              {monthCells(ym).map(date => {
+                if (!date) return <li style="display:contents"><span class="day empty"></span></li>;
+                const e = byDate[date];
+                const k = e ? THEME_KEY[e.theme] : weekdayKey(date);
+                const n = Number(date.slice(8));
+                const short = DAYS.find(x => x.key === k).short;
+                if (e) return (
+                  <li style="display:contents"><a href={`${base}${entryPath(e)}`} class:list={['day', date === TODAY && 'today', e.holy_day && 'holy']} data-day={k}>
+                    <span class="num serif">{n}</span><ThemeIcon day={k} />
+                    <span class="who"><span>{e.holy_day || (date === TODAY ? `Today · ${short}` : short)}</span><b>{e.person}</b></span>
+                  </a></li>
+                );
+                return (
+                  <li style="display:contents"><div class="day locked" data-day={k}>
+                    <span class="num serif">{n}</span><ThemeIcon day={k} />
+                    <span class="who"><span>{short}</span><b>{date > TODAY ? 'Unlocks at midnight' : '—'}</b></span>
+                  </div></li>
+                );
+              })}
+            </ol>
+          </section>
+        ))}
+      </Fragment>
+    )}
+  </div>
+  <script is:inline>
+    (function () {
+      var chips = document.querySelectorAll('.chip[data-pick]');
+      chips.forEach(function (c) {
+        c.addEventListener('click', function () {
+          var pick = c.dataset.pick;
+          chips.forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); });
+          document.querySelectorAll('.cal .day[data-day]').forEach(function (d) {
+            d.classList.toggle('dim', pick !== 'all' && d.dataset.day !== pick);
+          });
+        });
+      });
+    })();
+  </script>
+</Base>

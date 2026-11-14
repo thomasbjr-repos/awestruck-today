@@ -1,0 +1,24 @@
+---
+// Email signup (MailerLite, decided Nov 13). Paste the form's action URL from MailerLite
+// (Forms → Embedded form → HTML code: the <form action="…"> value) into MAILERLITE_ACTION
+// in src/lib/brand.mjs. Until then the box says signups open soon and sends nothing.
+import { MAILERLITE_ACTION } from '../lib/brand.mjs';
+const ready = Boolean(MAILERLITE_ACTION);
+const id = `em-${Math.random().toString(36).slice(2, 7)}`;
+---
+<section id="signup" class="signup wrap sr">
+  <div class="signup-card">
+    <h2 class="serif">Wake up <i>awestruck.</i></h2>
+    <p>One true, sourced story in your inbox every morning. Free.</p>
+    {ready ? (
+      <form class="signup-form" action={MAILERLITE_ACTION} method="post" target="_blank">
+        <label for={id} class="vh">Email address</label>
+        <input id={id} type="email" name="fields[email]" inputmode="email" autocomplete="email" placeholder="you@example.com" required />
+        <input type="hidden" name="ml-submit" value="1" />
+        <button type="submit" class="btn-gold glow">Subscribe</button>
+      </form>
+    ) : (
+      <p class="src">Email signups open with the first story on November 28.</p>
+    )}
+  </div>
+</section>

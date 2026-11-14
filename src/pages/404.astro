@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Base title="Not found — Awestruck Today" noindex>
+  <section class="pagehead band">
+    <Header />
+    <div class="wrap">
+      <span class="kicker">404</span>
+      <h1 class="serif">This page <i>isn't here.</i></h1>
+      <p>If you followed a link to a story, it may not be published yet: each one goes live at midnight Eastern on its date.</p>
+      <div class="ctas" style="margin-top:12px"><a href={`${base}today/`} class="btn-gold">Go to today's story</a><a href={`${base}archive/`} class="btn-glass">Browse the Archive</a></div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import ThemeIcon from '../components/ThemeIcon.astro';
+import Signup from '../components/Signup.astro';
+import { DAYS } from '../lib/entries.mjs';
+import { HEADLINE } from '../lib/brand.mjs';
+---
+<Base title="About — Awestruck Today" description={HEADLINE}>
+  <section class="pagehead band">
+    <Header current="about" />
+    <div class="wrap">
+      <span class="kicker">About</span>
+      <h1 class="serif">Faith built <i>culture.</i></h1>
+      <p>{HEADLINE}</p>
+    </div>
+  </section>
+
+  <div class="prose read">
+    <p>Awestruck Today publishes one deeply researched story every day, built around “On This Day in Christian History.” Every story follows one person and one real, dated moment in their life: a sermon, a book or song, a painting finished, a work begun, a birth or a death.</p>
+    <p>We tell those stories honestly, flaws included, because grace is the point. The people are the evidence; God is the hero.</p>
+
+    <h2 class="serif">Seven days, seven themes</h2>
+    <ul class="themes-list">
+      {DAYS.map(d => (
+        <li data-day={d.key}><ThemeIcon day={d.key} size="lg" /><div><b>{d.theme}</b><span>{d.dow} · {d.blurb}</span></div></li>
+      ))}
+    </ul>
+
+    <h2 class="serif">How we check every story</h2>
+    <p>Every date, quote and number carries a confidence tier, shown on the page:</p>
+    <ul>
+      <li><b>Tier A, Verified:</b> backed by a primary source, such as the original document, archive, first edition or sermon text.</li>
+      <li><b>Tier B, Corroborated:</b> two independent, reputable secondary sources agree.</li>
+      <li><b>Tier C, Traditional:</b> widely repeated but not traced to a source, and always labeled “traditional” or “attributed.”</li>
+    </ul>
+    <p>We use only images and recordings that are free to use (public domain or openly licensed), credited on every page. We never present an AI image as history. Mistakes are fixed openly.</p>
+    <p>The daily stories are free, and always will be.</p>
+  </div>
+  <Signup />
+</Base>

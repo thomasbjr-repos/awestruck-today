@@ -1,0 +1,28 @@
+---
+import { HEADLINE } from '../lib/brand.mjs';
+const base = import.meta.env.BASE_URL;
+---
+<footer class="ftr band">
+  <div class="wrap">
+    <span>{HEADLINE}</span>
+    <nav aria-label="Footer">
+      <a href={`${base}archive/`}>Archive</a>
+      <a href={`${base}about/`}>About</a>
+      <a href={`${base}what-we-believe/`}>What We Believe</a>
+      <button type="button" class="mode-btn" id="mode-btn" aria-live="polite">Light mode</button>
+    </nav>
+  </div>
+</footer>
+<script is:inline>
+  // Light/dark switch. The first visit follows the phone or computer setting; a choice is remembered.
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('mode-btn');
+    function label() { btn.textContent = root.dataset.theme === 'light' ? 'Dark mode' : 'Light mode'; }
+    label();
+    btn.addEventListener('click', function () {
+      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('at-theme', root.dataset.theme); } catch (e) {}
+      label();
+    });
+  })();
+</script>
