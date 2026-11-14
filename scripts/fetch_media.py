@@ -2,7 +2,8 @@
 
 Usage: python scripts/fetch_media.py content/entries/YYYY-MM-DD-short-name.json
 
-For each item in the entry's "media" list:
+Files go to assets/<date>-<slug>/ (e.g. assets/2026-11-28-letourneau/lead.jpg).
+For each item in the entry's optional "media" list ({role, file, source, caption, license?}):
 - Wikimedia Commons file pages: the license is read from the Commons API (extmetadata).
 - Any other URL: the item must carry its own "license" field.
 Only licenses on the auto-OK list are downloaded. Everything else is skipped and
@@ -44,9 +45,12 @@ def commons_info(page_url):
 
 def main(entry_path):
     entry = json.loads(pathlib.Path(entry_path).read_text())
-    out = pathlib.Path("assets") / entry["id"]
+    out = pathlib.Path("assets") / f"{entry['date']}-{entry['slug']}"
     out.mkdir(parents=True, exist_ok=True)
     credits, problems = [], []
+    if not entry.get("media"):
+        print(f"{entry_path}: no media list, nothing to fetch")
+        return
     for m in entry.get("media", []):
         if m.get("status") in ("needs_permission", "pending") or not m.get("source"):
             problems.append(f"{m.get('role')}: {m.get('status', 'no source')} — {m.get('note', '')}")

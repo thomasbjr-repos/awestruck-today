@@ -55,6 +55,7 @@ Text fields may use `*asterisks*` for italics; everything else is shown as plain
 }
 ```
 
+- `media` (optional, used only by the card builder): items `{ "role": "lead", "file": "lead.jpg", "source": "https://commons.wikimedia.org/wiki/File:…", "caption": "…" }`. The "Build entry assets" workflow checks each license, downloads the file to `assets/<date>-<slug>/`, and the cover card uses `lead.jpg` from there (match it to `lead_image.src`). Cards: cover, stat (first `numbers` item), quote, Scripture, Learn More, and a lock screen.
 - `window: true` stamps the entry "THIS WEEK" (the ±3-day rule); give the real event date in `event_date`.
 - `numbers`: 1–3 figures; the first is the headline figure on the homepage. Never a Tier C figure first.
 - `quote` is used when no `{ "quote": … }` item sits inside `story`; the homepage also shows it.
