@@ -3,7 +3,7 @@
 export const HEADLINE = 'Every day, a true story of what God did through ordinary, flawed people to shape the world.';
 
 // MailerLite embedded-form action URL (see src/components/Signup.astro). Empty = signup not live yet.
-export const MAILERLITE_ACTION = '';
+export const MAILERLITE_ACTION = 'https://assets.mailerlite.com/jsonp/2798287/forms/204232197193860131/subscribe';
 
 // Cloudflare Web Analytics (free, cookieless). The token is public by design.
 export const CF_ANALYTICS_TOKEN = 'f15c7169aefc45a6abc5c632e642ae7b';
