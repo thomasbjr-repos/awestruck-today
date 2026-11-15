@@ -104,6 +104,9 @@ html.at,html.at body{margin:0}
 .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,20,.85) 0%,rgba(11,15,20,0) 20%,rgba(11,15,20,0) 34%,rgba(11,15,20,.94) 74%,#0B0F14 100%)}
 .hero-body{position:relative;z-index:2;margin-top:auto;padding-bottom:clamp(64px,9vh,104px);display:flex;flex-direction:column;gap:clamp(16px,2.2vw,28px)}
 .hero-credit{position:absolute;z-index:2;right:var(--gutter);bottom:14px;font-size:11px;color:var(--slate);max-width:60%;text-align:right}
+/* Entry pages: the By the Numbers box overlaps the hero bottom, so lift the credit above it (licenses need it fully visible). */
+.hero:has(+ .wrap > .btn-box) .hero-credit{bottom:calc(14px + clamp(32px,4vw,56px))}
+.hero:has(+ .wrap > .btn-box) .hero-body{padding-bottom:calc(clamp(64px,9vh,104px) + clamp(32px,4vw,56px) + 24px)}
 .hook{margin:0;max-width:17ch;font-size:clamp(42px,7.4vw,132px);line-height:.96;letter-spacing:-.025em;text-wrap:balance;text-shadow:0 2px 30px rgba(11,15,20,.6)}
 .hook.sm{font-size:clamp(40px,6.4vw,112px)}
 @media (min-width:1024px){.hook{max-width:20ch}}
