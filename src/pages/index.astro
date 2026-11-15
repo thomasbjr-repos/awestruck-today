@@ -95,6 +95,18 @@ const stat = target?.numbers?.[0];
       <div class="rail">
         {week.map(d => d.entry ? (
           <a href={`${base}${entryPath(d.entry)}`} class:list={['wcard', d.isToday && 'today']} data-day={d.key}>
+            {d.entry.lead_image?.src && (
+              <span class="wmedia" aria-hidden="true">
+                <img
+                  src={d.entry.lead_image.srcset ? d.entry.lead_image.src.replace('lead-1600', 'lead-800') : d.entry.lead_image.src}
+                  srcset={d.entry.lead_image.srcset}
+                  sizes="(max-width: 599px) 82vw, 440px"
+                  alt=""
+                  loading={d.isToday ? 'eager' : 'lazy'}
+                  style={`object-position:${d.entry.lead_image.focus ?? '50% 30%'}`}
+                />
+              </span>
+            )}
             <span class="lbl"><ThemeIcon day={d.key} />{d.isToday ? 'TODAY' : d.dow.slice(0, 3).toUpperCase()} · {shortStamp(d.date)} · {(d.entry.holy_day || d.theme).toUpperCase()}</span>
             <span class="nm serif">{d.entry.person}</span>
           </a>
