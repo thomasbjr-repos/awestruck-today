@@ -24,6 +24,7 @@ const stamp = e.window ? `This week · ${shortStamp(e.event_date || e.date)}` : 
 const img = e.lead_image || null;
 const numbers = (e.numbers || []).slice(0, 3);
 const story = e.story || [];
+const ask = e.ask_yourself || e.prompt || null;   // `prompt` was the field's name before Nov 14, 2026
 const youtube = e.youtube_id ? `https://www.youtube-nocookie.com/embed/${encodeURIComponent(e.youtube_id)}?rel=0&playsinline=1` : null;
 ---
 <Base title={`${e.title} — Awestruck Today`} description={e.summary || e.title} day={key} image={img?.src}>
@@ -102,11 +103,16 @@ const youtube = e.youtube_id ? `https://www.youtube-nocookie.com/embed/${encodeU
     </section>
   )}
 
-  {(e.why || e.prompt) && (
+  {(e.why || ask) && (
     <section class="sec read sr">
       <h2 class="serif">Why it matters today</h2>
       {e.why && <p set:html={inline(e.why)} />}
-      {e.prompt && <p class="prompt"><b>Talk about it:</b> {e.prompt}</p>}
+      {ask && (
+        <div class="ask">
+          <span class="lbl">Ask yourself</span>
+          <p class="q" set:html={inline(ask)} />
+        </div>
+      )}
     </section>
   )}
 

@@ -1,7 +1,13 @@
 """Render Awestruck Today social assets from one entry JSON (Brand Guide: "Illuminated").
 
 Usage: python3 render.py entry.json outdir
-Produces carousel slides (1080x1350) and a lock screen (1080x1920) as PNG.
+Produces carousel slides (1080x1350), a lock screen and the two reel text cards (1080x1920) as PNG.
+
+Slide kinds: image, text, stat, quote, verse, whyitmatters, askyourself, end.
+Every post carries a "whyitmatters" tile (the Why It Matters Today paragraph, word for word)
+and an "askyourself" tile (the first-person question, word for word), per the Concept Brief,
+"Ask Yourself and Why It Matters Today on every social post". The same two also render as
+9:16 reel cards (reel-why uses the entry's reel line; reel-ask the question).
 Fonts: uses Instrument Serif / Inter if installed; falls back to a local serif.
 """
 import json, sys, pathlib, base64, mimetypes
@@ -90,8 +96,12 @@ def slide(e, s, n, total):
     .ref{{font:500 24px {SANS};letter-spacing:.14em;color:{IVORY};margin-top:32px}}
     .lm{{font:400 34px {SANS};color:{GOLD};margin-top:60px}}
     .head{{font:400 26px/1.4 {SANS};color:{MIST};margin-top:24px;max-width:800px}}
+    .trule{{width:56px;height:2px;background:{c};margin:0 0 34px}}
+    .why{{font:400 52px/1.3 {SERIF};max-width:900px}}
+    .askq{{font:400 100px/1.08 {SERIF};max-width:920px}}
+    .motifbg{{position:absolute;right:60px;bottom:170px;width:520px;height:320px;opacity:.3}}
     """
-    k, label, foot = s["kind"], e["theme"], f'<span>{n} / {total}</span><span>awestrucktoday.org</span>'
+    k, label, foot, behind = s["kind"], e["theme"], f'<span>{n} / {total}</span><span>awestrucktoday.org</span>', ""
     if k == "image":
         inner = (f'<div style="height:520px;background:{PANEL};border:1px solid {LINE}">{frame_inner(s.get("image"), c, BASE)}</div>'
                  f'<div style="font:400 18px {SANS};color:{SLATE};margin:10px 0 36px">{s["image_label"]}</div>'
@@ -107,11 +117,20 @@ def slide(e, s, n, total):
         inner = '<div class="q">' + "".join(f"<div>{l}</div>" for l in s["lines"]) + f'</div><div class="credit">{s["credit"]}</div>'
     elif k == "verse":
         inner = f'<div class="pre">{s["pre"]}</div><div class="verse">{s["text"]}</div><div class="ref">{s["ref"].upper()}</div>'
+    elif k == "whyitmatters":
+        # The entry's Why It Matters Today paragraph, word for word (about 60 words fits above the footer).
+        label = "WHY IT MATTERS"
+        inner = f'<div class="trule"></div><div class="why">{s["body"]}</div>'
+    elif k == "askyourself":
+        # The first-person question, word for word. Motif low-contrast in the lower right, never behind the words.
+        label = "ASK YOURSELF"
+        behind = f'<div class="motifbg">{motif_svg(c, 520, 320)}</div>'
+        inner = f'<div class="trule"></div><div class="askq">{s["question"]}</div>'
     else:  # end / Learn More slide
-        inner = (f'<div class="body">{s["prompt"]}</div><div class="lm">Learn more at awestrucktoday.org</div>'
+        inner = (f'<div class="body">{s.get("body", "")}</div><div class="lm">Learn more at awestrucktoday.org</div>'
                  f'<div class="head">Every day, a true story of what God did through ordinary, flawed people to shape the world.</div>')
         foot = '<span>Comment below ↓</span><span>Share this story</span>'
-    return page(css, top(label, c) + f'<div class="center">{inner}</div><div class="footer">{foot}</div>')
+    return page(css, top(label, c) + behind + f'<div class="center">{inner}</div><div class="footer">{foot}</div>')
 
 def lock(e):
     c = e["theme_color"]
@@ -125,6 +144,22 @@ def lock(e):
     body = (f'<div class="wrap"><div class="q">' + "".join(f"<div>{l}</div>" for l in e["lock_quote"]) +
             f'</div><div class="credit">{e["lock_credit"]}</div></div><div class="motif">{motif_svg(c, 1080, 300)}</div>'
             f'<div class="m"><span class="mark" style="font-size:30px">Awestruck <i>Today</i></span><span>awestrucktoday.org</span></div>')
+    return page(css, body, 1920)
+
+def reel_card(e, label, text, big):
+    """A 9:16 reel frame (about 4 seconds): the Why It Matters reel line, or the Ask Yourself question."""
+    c = e["theme_color"]
+    css = base_css(c) + f"""
+    .wrap{{position:absolute;left:80px;right:80px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}}
+    .tlabel{{font:500 30px {SANS};letter-spacing:.14em;color:{c}}}
+    .trule{{width:72px;height:2px;background:{c};margin:26px 0 46px}}
+    .t{{font:400 {104 if big else 72}px/{1.08 if big else 1.26} {SERIF}}}
+    .motifbg{{position:absolute;left:0;right:0;bottom:200px;height:360px;opacity:.28}}
+    .m{{position:absolute;left:80px;right:80px;bottom:110px;display:flex;justify-content:space-between;font:400 26px {SANS};color:{SLATE}}}
+    """
+    body = (f'<div class="motifbg">{motif_svg(c, 1080, 360)}</div>' if big else "")
+    body += (f'<div class="wrap"><div class="tlabel">{label}</div><div class="trule"></div><div class="t">{text}</div></div>'
+             f'<div class="m"><span class="mark" style="font-size:30px">Awestruck <i>Today</i></span><span>awestrucktoday.org</span></div>')
     return page(css, body, 1920)
 
 def apply_credits(e):
@@ -151,6 +186,12 @@ def main(src, out):
     for i, s in enumerate(e["slides"], start=2):
         jobs.append((f"{i:02d}-{s['kind']}", slide(e, s, i, total), 1350))
     jobs.append(("lockscreen", lock(e), 1920))
+    by_kind = {s.get("kind"): s for s in e["slides"]}
+    if "whyitmatters" in by_kind:
+        line = e.get("why_reel_line") or by_kind["whyitmatters"]["body"]
+        jobs.append(("reel-why", reel_card(e, "WHY IT MATTERS TODAY", line, False), 1920))
+    if "askyourself" in by_kind:
+        jobs.append(("reel-ask", reel_card(e, "ASK YOURSELF", by_kind["askyourself"]["question"], True), 1920))
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--no-sandbox"])
         for name, html, h in jobs:
