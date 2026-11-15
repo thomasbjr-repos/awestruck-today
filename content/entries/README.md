@@ -4,6 +4,20 @@ One JSON file per **approved** entry, named `YYYY-MM-DD-short-name.json`. Only e
 
 The site builds an entry page only once its `date` has arrived in Eastern time, at `/MM-DD/slug/`.
 
+## How an entry page is laid out
+
+Every entry page shows its sections in this order (set Nov 15, 2026); a section is skipped when its fields are empty:
+
+1. **Hero:** `lead_image` (with its `credit` shown on the photo), `hook`, `dateline`
+2. **Story:** `story`, then `quote` and `scripture`
+3. **Why it matters today:** `why` and the reflection question (`prompt`, renamed `ask_yourself` in pull request #7)
+4. **By the Numbers:** `numbers`
+5. **See & Hear:** `youtube_id` and `extras`
+6. **Sources:** `sources` and `confidence`
+7. Email signup, then links to the previous entry and Share
+
+The homepage is separate: it still shows the first `numbers` figure right under the hero.
+
 ## Required
 
 | Field | Example |
