@@ -84,6 +84,14 @@ const youtube = e.youtube_id ? `https://www.youtube-nocookie.com/embed/${encodeU
     )}
   </article>
 
+  {(e.why || e.prompt) && (
+    <section class="sec read sr">
+      <h2 class="serif">Why it matters today</h2>
+      {e.why && <p set:html={inline(e.why)} />}
+      {e.prompt && <p class="prompt"><b>Talk about it:</b> {e.prompt}</p>}
+    </section>
+  )}
+
   {(youtube || (e.extras || []).length > 0) && (
     <section id="see" class="seehear wrap sr">
       <h2 class="serif">See &amp; Hear</h2>
@@ -99,14 +107,6 @@ const youtube = e.youtube_id ? `https://www.youtube-nocookie.com/embed/${encodeU
           ))}
         </div>
       </div>
-    </section>
-  )}
-
-  {(e.why || e.prompt) && (
-    <section class="sec read sr">
-      <h2 class="serif">Why it matters today</h2>
-      {e.why && <p set:html={inline(e.why)} />}
-      {e.prompt && <p class="prompt"><b>Talk about it:</b> {e.prompt}</p>}
     </section>
   )}
 
