@@ -44,6 +44,9 @@ def commons_info(page_url):
 
 def main(entry_path):
     entry = json.loads(pathlib.Path(entry_path).read_text())
+    if "id" not in entry:
+        print(f"– {entry_path}: website-format entry (no social 'id'/'media' yet), skipped")
+        return
     out = pathlib.Path("assets") / entry["id"]
     out.mkdir(parents=True, exist_ok=True)
     credits, problems = [], []

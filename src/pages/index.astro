@@ -68,7 +68,7 @@ const stat = target?.numbers?.[0];
       <Header current="today" />
       <div class="hero-body wrap">
         <div class="kicker r1">On This Day in Christian History</div>
-        <h1 class="hook serif r2">Launching <i>November 28, 2026.</i></h1>
+        <h1 class="hook serif r2">Launching <i>November 15, 2026.</i></h1>
         <div class="dateline r3">Every day, a true story of what God did through one ordinary, flawed person, with every date, quote and number sourced.</div>
         <div class="ctas r4"><a href="#themes" class="btn-gold glow">See the seven themes ↓</a></div>
       </div>
@@ -139,7 +139,7 @@ const stat = target?.numbers?.[0];
         const Tag = c.href ? 'a' : 'div';
         return (
           <Tag class="extra" href={c.href || undefined} style="min-height:0">
-            <span class="t">{c.group === 'now' ? 'LAUNCHING NOV 28' : 'COMING DEC 13'}</span>
+            <span class="t">{c.group === 'later' ? 'COMING DEC 13' : c.href ? 'LIVE NOW' : 'OPENING SOON'}</span>
             <span class="d" style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;display:inline-flex" set:html={c.svg} />{c.name}</span>
             <span class="c">{c.handle}</span>
           </Tag>
