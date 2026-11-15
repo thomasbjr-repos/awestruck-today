@@ -19,11 +19,11 @@ The site is built with **[Astro](https://astro.build)** (free) as plain static p
 
 Run locally (needs Node 20+): `npm install`, then `npm run dev` to preview at http://localhost:4321, `npm test` for the checks, `npm run build` for the real build. Pretend it's another day with `AT_TODAY=2026-12-13 npm run dev`.
 
-## Social assets
+## Media and social assets
 
-- `.github/workflows/build-entry.yml` runs when an entry file is added or changed. It downloads each listed image **only if its license is on the free-to-use list** (public domain, CC0, no known restrictions, CC BY, CC BY-SA), saves it with its credits to `assets/<ID>/` (the rights log), and renders the carousel slides and lock screen.
-- `renderer/render.py` holds the brand templates (HTML rendered to PNG); `scripts/fetch_media.py` does the license-checked downloads; `fonts/` holds Instrument Serif (SIL Open Font License).
-- The entry format is being unified between the site build and the renderer before the first batch.
+- `.github/workflows/build-entry.yml` ("Fetch entry media") runs when an entry file is added or changed. It downloads each listed image **only if its license is on the free-to-use list** (public domain, CC0, no known restrictions, CC BY, CC BY-SA) and saves it with its credits to `assets/<ID>/` (the rights log), so entry pages can show their lead images. `scripts/fetch_media.py` does the license-checked downloads.
+- **Social assets** (reel, carousel, stat card, Why It Matters and Ask Yourself tiles, lock screen) are no longer made here. Since Nov 14, 2026 they are rendered in the private `awestruck-studio` repo (Remotion, on Thomas's Mac), which replaced `renderer/render.py`.
+- `fonts/` holds Instrument Serif (SIL Open Font License).
 
 ## Rights
 

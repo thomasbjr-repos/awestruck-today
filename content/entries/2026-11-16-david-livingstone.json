@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-16",
+  "slug": "david-livingstone",
+  "title": "The Smoke That Thunders",
+  "person": "David Livingstone",
+  "theme": "Missions & Movements",
+  "status": "Verified",
+  "hook": "He saw the smoke from six miles off. *Then they paddled him to the edge.*",
+  "dateline": "David Livingstone · Reached the falls on this day, November 16, 1855 · Mosi-oa-Tunya (Victoria Falls)",
+  "summary": "On November 16, 1855, David Livingstone first saw Mosi-oa-Tunya, the falls he named Victoria, and reached for one word: angels.",
+  "lead_image": {
+    "src": "/assets/2026-11-16-david-livingstone/lead-1600.jpg",
+    "srcset": "/assets/2026-11-16-david-livingstone/lead-800.jpg 800w, /assets/2026-11-16-david-livingstone/lead-1600.jpg 1461w",
+    "alt": "Photograph portrait of David Livingstone",
+    "credit": "David Livingstone. Photograph by the London Stereoscopic & Photographic Company. Wellcome Collection, Public Domain Mark",
+    "focus": "50% 30%"
+  },
+  "numbers": [
+    {
+      "value": "1,708",
+      "prefix": "about",
+      "meaning": "meters across: the width of the falls",
+      "as_of": "UNESCO",
+      "tier": "A",
+      "source_short": "UNESCO World Heritage Centre"
+    }
+  ],
+  "story": [
+    "He saw the smoke first. From five or six miles away, columns of white vapor rose above the Zambezi River, dark at the top, so much like smoke that the people who lived nearby had a name for it: Mosi-oa-Tunya, which Livingstone translated as \"smoke does sound there.\" On November 16, 1855, 171 years ago today, men who knew the rapids paddled David Livingstone in a light canoe to a small island at the very lip of the falls, and he looked down.",
+    "He was 42, a Scottish doctor sent to southern Africa by the London Missionary Society. He had grown up poor in Blantyre, near Glasgow, working long hours in a cotton mill by the age of 10. He believed the gospel was meant for all of Africa, and that the trade in enslaved people could be ended if the interior were opened to honest trade and to Christ. So in 1853 he set out to find a route across the continent. By November 1855 he had reached the Atlantic and turned back east, traveling with Makololo men and with their young chief, Sekeletu.",
+    "The cost was real, and some of it fell on others. In 1852 he had sent his wife, Mary, and their four children to Britain so he could travel, and for years they barely saw him. As a preacher he baptized only one convert, a chief named Sechele, who soon disappointed him, though Sechele went on to lead Christian worship among his own people.",
+    "At the falls he wrote what he saw. A river now measured at more than a kilometer wide fell into a crack in the earth. The spray rose so high it soaked him. He guessed the drop at about 100 feet; in places it is closer to 325. And he reached for the only word big enough: \"scenes so lovely must have been gazed upon by angels in their flight.\"",
+    "He named the falls after Queen Victoria, the only English name, he said, he ever put on that country. He cut his initials and \"the date 1855\" into a tree on the island, then admitted it was the only time he had \"indulged in this piece of vanity.\" Before he left, he planted about a hundred peach and apricot stones there, and some coffee seeds.",
+    "The journey made him famous. His book sold fast, and he became a national hero in Britain. Historians still argue about how his travels fed the colonial rush that followed his death in 1873. He died far from home, in what is now Zambia, still searching for the source of the Nile.",
+    "What he didn't live to see came later. In 1875 Scottish missionaries founded a mission in Malawi in his honor, Livingstonia. It grew into a church that still worships today.",
+    "The falls kept both names. Zambia calls its park Mosi-oa-Tunya. Livingstone hadn't found something no one knew; the people of the Zambezi had named it long before: Shongwe, and later Mosi-oa-Tunya. What he knew was who made it."
+  ],
+  "quote": {
+    "text": "Scenes so lovely must have been gazed upon by angels in their flight.",
+    "source": "David Livingstone, Missionary Travels and Researches in South Africa (1857), ch. 26",
+    "tier": "A"
+  },
+  "scripture": {
+    "text": "The LORD on high is mightier than the noise of many waters, yea, than the mighty waves of the sea.",
+    "ref": "Psalm 93:4",
+    "translation": "KJV",
+    "note": ""
+  },
+  "extras": [
+    {
+      "type": "source",
+      "title": "Missionary Travels (full text)",
+      "url": "https://www.gutenberg.org/ebooks/1039",
+      "credit": "Project Gutenberg, public domain"
+    },
+    {
+      "type": "gallery",
+      "title": "Livingstone, photographed by H.N. King",
+      "url": "https://wellcomecollection.org/works/f5e38rrx",
+      "credit": "Wellcome Collection, Public Domain Mark"
+    }
+  ],
+  "why": "Livingstone wasn't the first person to see Mosi-oa-Tunya, and in his lifetime he baptized only one convert. But a mission founded in his honor after he died grew into a church in Malawi that still worships today. God often grows the harvest long after the planter is gone, like peach stones left on an island.",
+  "prompt": "What am I planting that I may never see grow?",
+  "ask_yourself": "What am I planting that I may never see grow?",
+  "why_reel_line": "God often grows the harvest long after the planter is gone.",
+  "sources": [
+    {
+      "text": "David Livingstone, *Missionary Travels and Researches in South Africa* (1857), ch. 26",
+      "url": "https://thuto.org/ubh/etext/mtrav/liv26.htm"
+    },
+    {
+      "text": "Zimbabwe Field Guide, \"The first European visitors to view the Victoria Falls\" (notebook entry, found 1955)",
+      "url": "https://www.zimfieldguide.com/node/475"
+    },
+    {
+      "text": "Princeton University Library, \"David Livingstone, 1813–1873\"",
+      "url": "https://static-prod.lib.princeton.edu/visual_materials/maps/websites/africa/livingstone/livingstone.html"
+    },
+    {
+      "text": "Dictionary of African Christian Biography, \"Livingstone, David\"",
+      "url": "https://dacb.org/stories/southafrica/livingstone1-david"
+    },
+    {
+      "text": "UNESCO World Heritage Centre, \"Mosi-oa-Tunya / Victoria Falls\"",
+      "url": "https://whc.unesco.org/en/list/509/"
+    },
+    {
+      "text": "Church of Scotland, \"Our partner churches: Africa\" (Livingstonia, 1875; CCAP Synod of Livingstonia)",
+      "url": "https://www.churchofscotland.org.uk/serve/world-mission/our-partner-churches/africa"
+    },
+    {
+      "text": "Stephen Tomkins, \"The African chief converted\" (Global Ministries)",
+      "url": "https://www.globalministries.org/the_african_chief_converted_10_10_2014_1348"
+    },
+    {
+      "text": "Zambia Tourism, \"Missionaries and colonisers\"",
+      "url": "https://www.zambiatourism.com/about-zambia/history/missionaries-and-colonisers"
+    }
+  ],
+  "confidence": "Date B (notebook, four agreeing sources; older sources say Nov 17). Quote A. Width and height A. Family, Sechele, Livingstonia B. Faith B (DACB, CT, Birthplace). \"Historians still argue\" is framing ⚠ (unsourced). Present-day falls photo still to pick ⚠."
+}
