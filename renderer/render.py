@@ -1,16 +1,42 @@
 """Render Awestruck Today social assets from one entry JSON (Brand Guide: "Illuminated").
 
-Usage: python3 render.py entry.json outdir
-Produces carousel slides (1080x1350) and a lock screen (1080x1920) as PNG.
+Usage: python3 render.py content/entries/YYYY-MM-DD-slug.json outdir
+Reads the entry format in content/entries/README.md. Produces a cover, stat, quote,
+verse and Learn More slide (1080x1350) and a lock screen (1080x1920) as PNG.
 Fonts: uses Instrument Serif / Inter if installed; falls back to a local serif.
 """
-import json, sys, pathlib, base64, mimetypes
+import json, sys, os, re, html, pathlib, base64, mimetypes
 from playwright.sync_api import sync_playwright
 
 NIGHT, PANEL, LINE, IVORY, MIST, SLATE, GOLD = "#0B0F14", "#121821", "#222B38", "#F1EEE8", "#C4C9D2", "#8A93A3", "#E9C77B"
 SERIF = "'Instrument Serif', 'Liberation Serif', serif"
 SANS = "'Inter', sans-serif"
-BASE = pathlib.Path(".")
+REPO = pathlib.Path(__file__).resolve().parent.parent
+BASE = REPO
+
+# Dark-mode theme colors, same as [data-day] in src/styles/site.css.
+THEME_COLOR = {
+    "Preachers & Sermons": "#F2994A", "Missions & Movements": "#3FB6A8", "Books & Writings": "#E06C74",
+    "Music & Hymns": "#A48CF0", "Arts & Film": "#5B8DEF", "Science, Education & Thinkers": "#8FD6E8",
+    "Entrepreneurs & Builders": "#9DBF5A",
+}
+
+def esc(t):
+    """Escape text, then turn *asterisks* into italics (the entry format's only markup)."""
+    return re.sub(r"\*(.+?)\*", r"<i>\1</i>", html.escape(str(t or ""), quote=False))
+
+def plain(t):
+    return re.sub(r"\*(.+?)\*", r"\1", str(t or ""))
+
+def wrap_lines(text, width=26):
+    """Break a quote into short lines for the quote card and lock screen."""
+    lines, cur = [], ""
+    for w in plain(text).split():
+        if cur and len(cur) + 1 + len(w) > width:
+            lines.append(cur); cur = w
+        else:
+            cur = (cur + " " + w).strip()
+    return lines + [cur] if cur else lines
 
 def motif_svg(color, w=920, h=560):
     # Wed motif: a music staff with a rising melody (line drawing, never presented as history)
@@ -59,24 +85,51 @@ def top(label, c):
 def page(css, body, h=1350):
     return f"<!doctype html><html><head><meta charset='utf-8'><style>{css} body{{height:{h}px}}</style></head><body>{body}</body></html>"
 
+def entry_id(e):
+    return f"{e['date']}-{e['slug']}"
+
+def local_image(e):
+    """The lead image file in the repo (fetch_media.py saves it under assets/<id>/), if it exists."""
+    src = (e.get("lead_image") or {}).get("src", "")
+    f = REPO / src.lstrip("/") if src else None
+    return str(f.relative_to(REPO)) if f and f.exists() else None
+
+def find_quote(e):
+    q = e.get("quote")
+    if q and q.get("text"):
+        return q["text"], q.get("source", "")
+    for item in e.get("story", []):
+        if isinstance(item, dict) and item.get("quote"):
+            return item["quote"], item.get("cite", "")
+    return None, ""
+
 def cover(e):
-    c = e["theme_color"]
+    c = THEME_COLOR[e["theme"]]
+    li = e.get("lead_image") or {}
+    hook = esc(e.get("hook") or e["title"]).replace("<i>", "<em>").replace("</i>", "</em>")
     css = base_css(c) + f"""
     .frame{{position:absolute;top:150px;left:80px;right:80px;height:560px;background:{PANEL};border:1px solid {LINE}}}
-    .credit{{position:absolute;top:718px;left:80px;font:400 18px {SANS};color:{SLATE}}}
-    .hook{{position:absolute;top:770px;left:80px;right:80px;font:400 74px/1.06 {SERIF}}}
-    .date{{position:absolute;top:1135px;left:80px;display:flex;align-items:center;gap:20px;font:400 26px {SANS};color:{MIST}}}
-    .rule{{width:56px;height:2px;background:{c}}}
+    .credit{{position:absolute;top:718px;left:80px;right:80px;font:400 18px {SANS};color:{SLATE}}}
+    .hook{{position:absolute;top:770px;left:80px;right:80px;font:400 66px/1.08 {SERIF}}}
+    .date{{position:absolute;top:1135px;left:80px;right:80px;display:flex;align-items:center;gap:20px;font:400 26px {SANS};color:{MIST}}}
+    .rule{{flex:none;width:56px;height:2px;background:{c}}}
+    .stamp{{font:500 24px {SANS};letter-spacing:.14em;color:{c}}}
     """
-    body = (top(e["theme"], c) + f'<div class="frame">{frame_inner(e.get("cover_image"), c, BASE)}</div><div class="credit">{e["image_label"]}</div>'
-            f'<div class="hook">{e["hook_lead"]} <em>{e["hook_payoff"]}</em></div>'
-            f'<div class="date"><div class="rule"></div>{e["date_line"]}</div>'
-            f'<div class="footer"><span>{e["scripture_ref"]}</span><span>Swipe for the full story →</span></div>')
+    stamp = ("THIS WEEK" if e.get("window") else "ON THIS DAY") + " · " + date_label(e)
+    body = (top(stamp, c) + f'<div class="frame">{frame_inner(local_image(e), c, REPO)}</div><div class="credit">{esc(li.get("credit", ""))}</div>'
+            f'<div class="hook">{hook}</div>'
+            f'<div class="date"><div class="rule"></div>{esc(e.get("dateline", e["person"]))}</div>'
+            f'<div class="footer"><span>{esc((e.get("scripture") or {}).get("ref", ""))}</span><span>Swipe for the full story →</span></div>')
     return page(css, body)
 
-def slide(e, s, n, total):
-    c = e["theme_color"]
-    css = base_css(c) + f"""
+MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+
+def date_label(e):
+    d = e.get("event_date") or e["date"]
+    return f"{MONTHS[int(d[5:7]) - 1]} {int(d[8:10])}"
+
+def slide_css(c):
+    return base_css(c) + f"""
     .center{{position:absolute;left:80px;right:80px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}}
     .body{{font:400 72px/1.12 {SERIF}}}
     .q{{font:400 56px/1.2 {SERIF}}} .q div:last-child{{color:{c};font-style:italic}}
@@ -86,35 +139,50 @@ def slide(e, s, n, total):
     .meaning{{font:400 56px/1.15 {SERIF};margin-top:24px;max-width:880px}}
     .cmp{{font:400 28px {SANS};color:{MIST};margin-top:28px}}
     .pre{{font:400 28px {SANS};color:{MIST};margin-bottom:28px}}
-    .verse{{font:italic 400 88px/1.08 {SERIF};color:{c}}}
+    .verse{{font:italic 400 64px/1.12 {SERIF};color:{c}}}
     .ref{{font:500 24px {SANS};letter-spacing:.14em;color:{IVORY};margin-top:32px}}
     .lm{{font:400 34px {SANS};color:{GOLD};margin-top:60px}}
     .head{{font:400 26px/1.4 {SANS};color:{MIST};margin-top:24px;max-width:800px}}
     """
-    k, label, foot = s["kind"], e["theme"], f'<span>{n} / {total}</span><span>awestrucktoday.org</span>'
-    if k == "image":
-        inner = (f'<div style="height:520px;background:{PANEL};border:1px solid {LINE}">{frame_inner(s.get("image"), c, BASE)}</div>'
-                 f'<div style="font:400 18px {SANS};color:{SLATE};margin:10px 0 36px">{s["image_label"]}</div>'
-                 f'<div class="body" style="font-size:60px">{s["body"]}</div>')
-    elif k == "text":
-        inner = f'<div class="body">{s["body"]}</div>'
-    elif k == "stat":
-        label = "BY THE NUMBERS"
-        inner = (f'<div class="qual">{s["qualifier"]}</div><div class="num">{s["numeral"]}</div>'
-                 f'<div class="meaning">{s["meaning"]}</div><div class="cmp">{s["comparison"]}</div>')
-        foot = f'<span>{s["source"]}</span><span>{n} / {total}</span>'
-    elif k == "quote":
-        inner = '<div class="q">' + "".join(f"<div>{l}</div>" for l in s["lines"]) + f'</div><div class="credit">{s["credit"]}</div>'
-    elif k == "verse":
-        inner = f'<div class="pre">{s["pre"]}</div><div class="verse">{s["text"]}</div><div class="ref">{s["ref"].upper()}</div>'
-    else:  # end / Learn More slide
-        inner = (f'<div class="body">{s["prompt"]}</div><div class="lm">Learn more at awestrucktoday.org</div>'
-                 f'<div class="head">Every day, a true story of what God did through ordinary, flawed people to shape the world.</div>')
-        foot = '<span>Comment below ↓</span><span>Share this story</span>'
-    return page(css, top(label, c) + f'<div class="center">{inner}</div><div class="footer">{foot}</div>')
+
+def build_slides(e):
+    """(name, html, height) for each card the entry has material for."""
+    c, label = THEME_COLOR[e["theme"]], e.get("holy_day") or e["theme"]
+    css = slide_css(c)
+    stamp = ("THIS WEEK" if e.get("window") else "ON THIS DAY") + " · " + date_label(e)
+    cards = []
+    nums = e.get("numbers") or []
+    if nums:
+        n = nums[0]
+        note = [f"as of {n['as_of']}"] if n.get("as_of") else []
+        note += ["reported figure"] if n.get("reported") else []
+        note += [f"Tier {n['tier']}"] if n.get("tier") else []
+        inner = (f'<div class="qual">{esc(n.get("prefix", ""))}</div><div class="num">{esc(n["value"])}</div>'
+                 f'<div class="meaning">{esc(n["meaning"])}</div><div class="cmp">{" · ".join(note)}</div>')
+        foot = f'<span>{esc(n.get("source_short", ""))}</span><span>{{n}} / {{total}}</span>'
+        cards.append(("stat", "BY THE NUMBERS", inner, foot))
+    qt, qsrc = find_quote(e)
+    if qt:
+        inner = '<div class="q">' + "".join(f"<div>{html.escape(l)}</div>" for l in wrap_lines(qt)) + f'</div><div class="credit">{esc(qsrc)}</div>'
+        cards.append(("quote", stamp, inner, '<span>{n} / {total}</span><span>awestrucktoday.org</span>'))
+    sc = e.get("scripture")
+    if sc and sc.get("text"):
+        inner = (f'<div class="pre">{esc(sc.get("note", ""))}</div><div class="verse">{esc(sc["text"])}</div>'
+                 f'<div class="ref">{esc(sc["ref"].upper())} · {esc(sc.get("translation", ""))}</div>')
+        cards.append(("verse", "SCRIPTURE", inner, '<span>{n} / {total}</span><span>awestrucktoday.org</span>'))
+    inner = (f'<div class="body">{esc(e.get("prompt", ""))}</div><div class="lm">Learn more at awestrucktoday.org</div>'
+             f'<div class="head">Every day, a true story of what God did through ordinary, flawed people to shape the world.</div>')
+    cards.append(("end", label, inner, '<span>Comment below ↓</span><span>Share this story</span>'))
+    total = len(cards) + 1
+    out = []
+    for i, (kind, lab, inner, foot) in enumerate(cards, start=2):
+        foot = foot.replace("{n}", str(i)).replace("{total}", str(total))
+        out.append((f"{i:02d}-{kind}", page(css, top(lab, c) + f'<div class="center">{inner}</div><div class="footer">{foot}</div>'), 1350))
+    return out
 
 def lock(e):
-    c = e["theme_color"]
+    c = THEME_COLOR[e["theme"]]
+    qt, qsrc = find_quote(e)
     css = base_css(c) + f"""
     .wrap{{position:absolute;left:90px;right:90px;top:760px}}
     .q{{font:400 70px/1.2 {SERIF}}} .q div:last-child{{font-style:italic;color:{c}}}
@@ -122,46 +190,29 @@ def lock(e):
     .m{{position:absolute;left:90px;right:90px;bottom:120px;display:flex;justify-content:space-between;font:400 24px {SANS};color:{SLATE}}}
     .motif{{position:absolute;left:0;right:0;top:1380px;height:300px;opacity:.6}}
     """
-    body = (f'<div class="wrap"><div class="q">' + "".join(f"<div>{l}</div>" for l in e["lock_quote"]) +
-            f'</div><div class="credit">{e["lock_credit"]}</div></div><div class="motif">{motif_svg(c, 1080, 300)}</div>'
+    body = (f'<div class="wrap"><div class="q">' + "".join(f"<div>{html.escape(l)}</div>" for l in wrap_lines(qt or e["title"], 22)) +
+            f'</div><div class="credit">{esc(qsrc or e["person"])}</div></div><div class="motif">{motif_svg(c, 1080, 300)}</div>'
             f'<div class="m"><span class="mark" style="font-size:30px">Awestruck <i>Today</i></span><span>awestrucktoday.org</span></div>')
     return page(css, body, 1920)
 
-def apply_credits(e):
-    """When cleared images exist, replace the placeholder labels with real credit lines."""
-    cred = BASE.parent / "assets" / e["id"] / "credits.json"
-    if not cred.exists():
-        return
-    by_role = {c["role"]: c for c in json.loads(cred.read_text())}
-    line = lambda c: f'{c.get("caption","")} · {c.get("credit","")}, {c.get("license","")}'.strip(" ·,")
-    if "cover" in by_role:
-        e["image_label"] = line(by_role["cover"])
-    for s in e["slides"]:
-        if s.get("kind") == "image" and "card" in by_role:
-            s["image_label"] = line(by_role["card"])
-
 def main(src, out):
-    global BASE
-    BASE = pathlib.Path(src).resolve().parent
     e = json.loads(pathlib.Path(src).read_text())
-    if "slides" not in e:
-        print(f"– {src}: website-format entry (no social slides yet), skipped")
-        return
-    apply_credits(e)
+    if e.get("status") not in ("Verified", "Produced", "Scheduled", "Published"):
+        print(f"skip {src}: status is {e.get('status')!r}"); return
     out = pathlib.Path(out); out.mkdir(parents=True, exist_ok=True)
-    jobs = [("01-cover", cover(e), 1350)]
-    total = len(e["slides"]) + 1
-    for i, s in enumerate(e["slides"], start=2):
-        jobs.append((f"{i:02d}-{s['kind']}", slide(e, s, i, total), 1350))
-    jobs.append(("lockscreen", lock(e), 1920))
+    jobs = [("01-cover", cover(e), 1350)] + build_slides(e) + [("lockscreen", lock(e), 1920)]
+    launch = {"args": ["--no-sandbox"]}
+    if os.environ.get("CHROME_PATH"):
+        launch["executable_path"] = os.environ["CHROME_PATH"]
     with sync_playwright() as p:
-        b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--no-sandbox"])
-        for name, html, h in jobs:
+        b = p.chromium.launch(**launch)
+        for name, html_, h in jobs:
             pg = b.new_page(viewport={"width": 1080, "height": h})
-            pg.set_content(html); pg.wait_for_timeout(150)
-            pg.screenshot(path=str(out / f"{e['id']}_{name}.png")); pg.close()
+            pg.set_content(html_); pg.wait_for_timeout(150)
+            pg.screenshot(path=str(out / f"{entry_id(e)}_{name}.png")); pg.close()
         b.close()
-    print("\n".join(sorted(str(f) for f in out.glob("*.png"))))
+    print("\n".join(sorted(str(f) for f in out.glob(f"{entry_id(e)}_*.png"))))
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    for path in sys.argv[1:-1]:
+        main(path, sys.argv[-1])
