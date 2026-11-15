@@ -50,21 +50,6 @@ const youtube = e.youtube_id ? `https://www.youtube-nocookie.com/embed/${encodeU
     {img?.credit && <span class="hero-credit" set:html={inline(img.credit)} />}
   </section>
 
-  {numbers.length > 0 && (
-    <div class="wrap">
-      <section class="btn-box" style={`--n:${numbers.length}`} aria-label="By the Numbers">
-        <span class="kicker">By the Numbers</span>
-        {numbers.map((n, i) => (
-          <div class="fig">
-            <span class:list={['n serif', i === 0 && 'glowtext']}>{n.prefix && <i>{n.prefix}</i>}{n.value}</span>
-            <span class="m" set:html={inline(n.meaning)} />
-            <a href="#sources">{[n.as_of, `Tier ${n.tier}${n.reported ? ', reported' : ''}`].filter(Boolean).join(' · ')} · source ↓</a>
-          </div>
-        ))}
-      </section>
-    </div>
-  )}
-
   <article id="story" class="story read">
     {story.map((p, i) => (
       p.quote
@@ -90,6 +75,21 @@ const youtube = e.youtube_id ? `https://www.youtube-nocookie.com/embed/${encodeU
       {e.why && <p set:html={inline(e.why)} />}
       {e.prompt && <p class="prompt"><b>Talk about it:</b> {e.prompt}</p>}
     </section>
+  )}
+
+  {numbers.length > 0 && (
+    <div class="wrap numbers-sec">
+      <section class="btn-box" style={`--n:${numbers.length}`} aria-label="By the Numbers">
+        <span class="kicker">By the Numbers</span>
+        {numbers.map((n, i) => (
+          <div class="fig">
+            <span class:list={['n serif', i === 0 && 'glowtext']}>{n.prefix && <i>{n.prefix}</i>}{n.value}</span>
+            <span class="m" set:html={inline(n.meaning)} />
+            <a href="#sources">{[n.as_of, `Tier ${n.tier}${n.reported ? ', reported' : ''}`].filter(Boolean).join(' · ')} · source ↓</a>
+          </div>
+        ))}
+      </section>
+    </div>
   )}
 
   {(youtube || (e.extras || []).length > 0) && (
