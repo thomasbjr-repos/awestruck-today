@@ -144,6 +144,9 @@ def main(src, out):
     global BASE
     BASE = pathlib.Path(src).resolve().parent
     e = json.loads(pathlib.Path(src).read_text())
+    if "slides" not in e:
+        print(f"– {src}: website-format entry (no social slides yet), skipped")
+        return
     apply_credits(e)
     out = pathlib.Path(out); out.mkdir(parents=True, exist_ok=True)
     jobs = [("01-cover", cover(e), 1350)]
