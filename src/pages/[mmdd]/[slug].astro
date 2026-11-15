@@ -1,6 +1,15 @@
 ---
 // One entry page: /MM-DD/short-name/. Only approved entries whose date has arrived
 // (midnight Eastern) are built at all, so future pages don't exist on the site.
+//
+// Section order (Thomas, Nov 15, 2026). Keep it when adding or changing sections:
+//   1. Hero: photo, hook, dateline, "Read the story", photo credit
+//   2. Story, then the featured quote and Scripture
+//   3. Why it matters today (with the reflection question)
+//   4. By the Numbers (its own box, not overlapping the hero)
+//   5. See & Hear (reel and extras)
+//   6. Sources (tiers, confidence note)
+//   7. Signup, then the prev / Share row
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import ThemeIcon from '../../components/ThemeIcon.astro';

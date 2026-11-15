@@ -10,7 +10,7 @@ The site is built with **[Astro](https://astro.build)** (free) as plain static p
 
 - `content/entries/` holds one JSON file per **approved** entry (Status Verified or later in the Entry Database). Drafts, review notes and anything unapproved never go here, because this repo is public. The fields are listed in `content/entries/README.md`.
 - `src/lib/entries.mjs` holds the release rule: only approved entries whose date has arrived in **Eastern time** are built, so each page goes public at midnight Eastern on its date. `/today` always points at the current entry.
-- `src/pages/` holds the pages: home (`index.astro`), `today`, each entry (`[mmdd]/[slug].astro` → `/MM-DD/short-name/`), `archive` (calendar), `about`, `what-we-believe` and `404`.
+- `src/pages/` holds the pages: home (`index.astro`), `today`, each entry (`[mmdd]/[slug].astro` → `/MM-DD/short-name/`), `archive` (calendar), `about`, `what-we-believe` and `404`. Entry pages run hero → story → Why it matters today → By the Numbers → See & Hear → Sources; the order is listed in `content/entries/README.md`.
 - `src/styles/site.css` is the whole design system (the same file as the Website directions canvas). `src/lib/icons.mjs` holds the seven theme icons; `src/lib/brand.mjs` the sunrise mark, headline, channels, analytics token and the MailerLite form address.
 - `.github/workflows/deploy.yml` installs Astro, runs the checks, builds and deploys on every push to `main` and just after midnight Eastern every day. Pull requests build a downloadable preview instead of deploying.
 - `scripts/test-build.mjs` checks the release rule and builds a test copy of the site (time zone rollover; future and unapproved entries stay hidden; /today, Archive and pages exist). The deploy stops if it fails.
