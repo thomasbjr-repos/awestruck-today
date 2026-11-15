@@ -34,12 +34,16 @@ jobs:
 
       - name: Fetch cleared media (license-checked)
         run: |
+          shopt -s nullglob   # no entries yet: do nothing instead of passing the glob through
           for f in content/entries/*.json; do python scripts/fetch_media.py "$f"; done
 
       - name: Render cards
         run: |
+          shopt -s nullglob
           sed -i 's#executable_path="/usr/bin/google-chrome", ##' renderer/render.py
           for f in content/entries/*.json; do python renderer/render.py "$f" out; done
+          [ -d out ] || echo "No entry files yet, so no cards were rendered."
+          mkdir -p out
 
       - name: Save fonts and cleared media to the repo
         run: |
