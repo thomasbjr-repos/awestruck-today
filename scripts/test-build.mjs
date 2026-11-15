@@ -22,7 +22,8 @@ assert.equal(weekdayKey('2026-11-13'), 'fri');
 const base = { person: 'Test Person', theme: 'Arts & Film', title: 'Test entry' };
 const list = [
   { ...base, date: '2026-12-12', slug: 'a', status: 'Verified', theme: 'Entrepreneurs & Builders' },
-  { ...base, date: '2026-12-13', slug: 'b', status: 'Produced', theme: 'Preachers & Sermons', hook: 'A *test* hook', numbers: [{ value: '93', meaning: 'test figures', tier: 'B' }] },
+  { ...base, date: '2026-12-13', slug: 'b', status: 'Produced', theme: 'Preachers & Sermons', hook: 'A *test* hook', numbers: [{ value: '93', meaning: 'test figures', tier: 'B' }],
+    story: ['Story text.'], why: 'Why text.', extras: [{ type: 'SOURCE', title: 'Extra', url: 'https://example.org' }], sources: [{ text: 'Source text' }] },
   { ...base, date: '2026-12-14', slug: 'c', status: 'Produced' }, // future
   { ...base, date: '2026-12-10', slug: 'd', status: 'Draft' },    // never published
 ];
@@ -46,6 +47,10 @@ assert.ok(today.includes('/12-13/b/'), '/today points at today\'s entry');
 const entry = await readFile(join(out, '12-13/b/index.html'), 'utf8');
 assert.ok(entry.includes('<i>test</i>'), 'hook italics render');
 assert.ok(entry.includes('data-day="sun"'), 'theme color set from the theme');
+// Entry section order (Thomas, Nov 15, 2026): story → Why it matters → By the Numbers → See & Hear → Sources.
+const order = ['id="story"', '>Why it matters today<', 'aria-label="By the Numbers"', 'id="see"', 'id="sources"'].map(m => entry.indexOf(m));
+assert.ok(order.every(i => i > 0), 'entry page has every section');
+assert.deepEqual([...order].sort((x, y) => x - y), order, 'entry sections in order: story, Why it matters, By the Numbers, See & Hear, Sources');
 const archive = await readFile(join(out, 'archive/index.html'), 'utf8');
 assert.ok(archive.includes('/12-12/a/') && !archive.includes('/12-14/c/'), 'archive lists only live entries');
 await access(join(out, 'about/index.html'));

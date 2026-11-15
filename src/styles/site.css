@@ -135,6 +135,9 @@ html.at,html.at body{margin:0}
 .btn-box{margin-top:clamp(-56px,-4vw,-32px);position:relative;z-index:2;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,40px);display:grid;grid-template-columns:1fr;gap:clamp(20px,3vw,40px);box-shadow:0 30px 80px -40px color-mix(in srgb,var(--theme) calc(60%*var(--glow)),transparent)}
 @media (min-width:760px){.btn-box{grid-template-columns:repeat(var(--n,2),minmax(0,1fr))}}
 .btn-box .kicker{grid-column:1/-1}
+/* Entry pages: By the Numbers sits below Why it matters, above See & Hear, not overlapping the hero. */
+.numbers-sec{padding-top:0}
+.numbers-sec .btn-box{margin-top:0}
 .fig{display:flex;flex-direction:column;gap:8px}
 .fig+.fig{border-top:1px solid var(--line);padding-top:20px}
 @media (min-width:760px){.fig+.fig{border-top:0;padding-top:0;border-left:1px solid var(--line);padding-left:clamp(20px,3vw,40px)}}
