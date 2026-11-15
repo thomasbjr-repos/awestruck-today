@@ -214,7 +214,7 @@ html.at,html.at body{margin:0}
 .wcard .lbl,.wcard .nm{position:relative;z-index:1}
 .wcard .lbl{position:absolute}
 .wcard:has(.wmedia) .nm{color:#F1EEE8}
-.wcard:has(.wmedia) .lbl{text-shadow:0 1px 12px rgba(11,15,20,.8)}
+.wcard:has(.wmedia) .lbl{--theme:var(--t-d);text-shadow:0 1px 12px rgba(11,15,20,.8)}
 
 /* ---------- Archive calendar ---------- */
 .arch-tools{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-block:clamp(24px,3vw,40px)}
