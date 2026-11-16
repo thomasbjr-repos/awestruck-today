@@ -18,6 +18,10 @@ Every entry page shows its sections in this order (set Nov 15, 2026); a section 
 
 The homepage is separate: it still shows the first `numbers` figure right under the hero.
 
+## How entries get here (automatic, from Nov 16, 2026)
+
+Every evening a scheduled Claude task runs the Review Desk sync, then turns each entry Thomas set to **Verified** on the Desk into a file here with `scripts/desk_to_entry.py`, word for word, and pushes it to `main`. The script never overwrites an existing file and refuses anything that still carries a review note (⚠, "to confirm", image sizes and the like). The "Fetch entry media" workflow then downloads the lead image named in `lead_image.fetch` (license-checked, resized to 800 px) into `public/assets/<file name>/lead-800.jpg`. The site's midnight build publishes each entry on its date.
+
 ## Required
 
 | Field | Example |
@@ -69,6 +73,7 @@ Text fields may use `*asterisks*` for italics; everything else is shown as plain
 }
 ```
 
+- `lead_image.fetch` (`url`: the image's page, `file_url`: the image file, `license`) tells the media workflow where to download the lead image; the site ignores it.
 - `window: true` stamps the entry "THIS WEEK" (the ±3-day rule); give the real event date in `event_date`.
 - `numbers`: 1–3 figures; the first is the headline figure on the homepage. Never a Tier C figure first.
 - `quote` is used when no `{ "quote": … }` item sits inside `story`; the homepage also shows it.
