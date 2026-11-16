@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-25",
+  "slug": "isaac-watts",
+  "title": "The Worst-Done Part of Worship",
+  "person": "Isaac Watts",
+  "theme": "Music & Hymns",
+  "status": "Verified",
+  "hook": "He said church singing was the worst-done part of worship. *So he wrote new songs.*",
+  "dateline": "Isaac Watts · Died on this day, November 25, 1748 · Stoke Newington, England",
+  "summary": "Isaac Watts died on November 25, 1748, leaving the church about 600 hymns.",
+  "lead_image": {
+    "src": "/assets/2026-11-25-isaac-watts/lead-1600.jpg",
+    "srcset": "/assets/2026-11-25-isaac-watts/lead-800.jpg 800w, /assets/2026-11-25-isaac-watts/lead-1600.jpg 1600w",
+    "alt": "Oil portrait of Isaac Watts in black clerical robes and a white wig",
+    "credit": "Isaac Watts, unknown artist, c. 1720–35 · National Portrait Gallery, London · Public domain, via Wikimedia Commons",
+    "focus": "50% 30%"
+  },
+  "numbers": [
+    {
+      "value": "600",
+      "prefix": "about",
+      "meaning": "hymns written by Isaac Watts (estimates run higher, to about 750)",
+      "as_of": "1748",
+      "tier": "B",
+      "source_short": "History Today"
+    },
+    {
+      "value": "36",
+      "meaning": "years he lived as a guest of the Abney family, after coming in 1712 for what was meant to be a week",
+      "as_of": "1748",
+      "tier": "B",
+      "source_short": "Britannica; History Today"
+    }
+  ],
+  "story": [
+    "The man was barely five feet tall, and after one bad fever he was never fully well again. He spent his last 36 years as a guest in other people's houses. On November 25, 1748, 278 years ago today, Isaac Watts died in Stoke Newington, outside London, in the home of the friends who had taken him in. He left the church about 600 hymns.",
+    "He was born in Southampton on July 17, 1674, into a Nonconformist family that worshipped outside the Church of England. His father had been jailed twice for his faith. Watts grew up loving words, and unhappy with how his church sang them.",
+    "There is a story, told later as “the tradition,” that the young Watts, home in Southampton around age 20, complained about the psalm-singing at his family's chapel and was told to write something better. His first hymn was the answer, the story goes, and the congregation asked for another, and another. Whether or not it happened that way, Watts said the same thing in print. “While we sing the Praises of our God in his Church,” he wrote in 1707, “we are employed in that part of Worship which of all others is the nearest a-kin to Heaven: and ‘tis pity that this of all others should be performed the worst upon Earth.”",
+    "So he set out to fix it. The chapels he knew sang rhymed versions of the Psalms. Watts wrote new songs in plain English about Jesus. *Hymns and Spiritual Songs* came out in 1707, with “When I Survey the Wondrous Cross” inside. In 1719 *The Psalms of David Imitated* reworked the old psalms “in the language of the New Testament.” Psalm 90 became “Our God, our help in ages past” (John Wesley changed the first word to “O” in 1738). Psalm 98 became “Joy to the World,” probably not written as a Christmas song at all.",
+    "Long before that, his body had given out. In 1712, ten years into his pastorate at the Mark Lane chapel in London, he fell seriously ill. Sir Thomas Abney invited him to his house in Hertfordshire to recover. Watts came for a week. He never left. He stayed on with Lady Abney and her family after Sir Thomas died, and moved with them to Abney House in Stoke Newington, where a plaque says he stayed from 1734 to 1748. Samuel Johnson wrote that Watts was “treated for thirty-six years with all the kindness that friendship could prompt.”",
+    "From that borrowed room he kept writing: sermons, a textbook on logic, and songs for children. Johnson admired a philosopher who would stop to make “a catechism for children in their fourth year.”",
+    "He died at 74, worn out slowly. His friends buried him in Bunhill Fields, the burial ground for London's Dissenters. On December 11, 1748, David Jennings preached to his old congregation about his death.",
+    "Watts never had a pulpit as big as his songs, or a house of his own. But God gave him a home, and gave the church the words. This December, someone will sing “Joy to the World” without knowing his name."
+  ],
+  "quote": {
+    "text": "While we sing the Praises of our God in his Church, we are employed in that part of Worship which of all others is the nearest a-kin to Heaven: and ‘tis pity that this of all others should be performed the worst upon Earth.",
+    "source": "Isaac Watts, Preface to Hymns and Spiritual Songs (1707), opening sentence",
+    "tier": "A"
+  },
+  "scripture": {
+    "text": "Lord, thou hast been our dwelling place in all generations. Before the mountains were brought forth, or ever thou hadst formed the earth and the world, even from everlasting to everlasting, thou art God.",
+    "ref": "Psalm 90:1–2",
+    "translation": "KJV",
+    "note": "Watts turned Psalm 90 into “Our God, our help in ages past.”"
+  },
+  "extras": [
+    {
+      "type": "gallery",
+      "title": "Isaac Watts memorial statue (1845), Abney Park Cemetery, Stoke Newington",
+      "url": "https://www.geograph.org.uk/photo/5366296",
+      "credit": "CC BY-SA 2.0"
+    },
+    {
+      "type": "gallery",
+      "title": "Isaac Watts statue, Watts Park, Southampton, his birthplace",
+      "url": "https://www.geograph.org.uk/photo/1714709",
+      "credit": "CC BY-SA 2.0"
+    }
+  ],
+  "why": "Every December, churches still sing “Joy to the World,” and around Easter “When I Survey the Wondrous Cross.” Both came from a sick, five-foot pastor living as a guest in a friend's house. God used him to teach English-speaking churches to sing the gospel in their own words.",
+  "prompt": "Whose kindness has made room for me to do what God asked?",
+  "ask_yourself": "Whose kindness has made room for me to do what God asked?",
+  "why_reel_line": "God used a sick pastor in a borrowed room to give the church its songs.",
+  "sources": [
+    {
+      "text": "Isaac Watts, Preface to Hymns and Spiritual Songs (London, 1707), transcription at CCEL",
+      "url": "https://ccel.org/cceh/archives/eee/wattsprh.htm"
+    },
+    {
+      "text": "Samuel Johnson, ‘Watts,’ Lives of the Poets (1781), in Works, vol. 8 (Project Gutenberg #24218)",
+      "url": "https://www.gutenberg.org/files/24218/24218-h/24218-h.htm"
+    },
+    {
+      "text": "Encyclopaedia Britannica, ‘Isaac Watts’",
+      "url": "https://www.britannica.com/print/article/637744"
+    },
+    {
+      "text": "History Today, ‘The Death of Isaac Watts’",
+      "url": "https://historytoday.com/node/48348"
+    },
+    {
+      "text": "Edwin Paxton Hood, Isaac Watts: His Life and Writings, His Homes and Friends (1875), Project Gutenberg #69963",
+      "url": "https://gutenberg.org/cache/epub/69963/pg69963-images.html"
+    },
+    {
+      "text": "Hymnology Archive: ‘When I survey the wondrous cross’",
+      "url": "https://www.hymnologyarchive.com/when-i-survey"
+    },
+    {
+      "text": "Wikipedia, ‘Isaac Watts’",
+      "url": "https://en.wikipedia.org/wiki/Isaac_Watts"
+    },
+    {
+      "text": "London Remembers, ‘Abney House’ plaque",
+      "url": "https://londonremembers.com/memorials/abney-house"
+    },
+    {
+      "text": "David Jennings, A Sermon Occasioned by the Death of the Late Reverend Isaac Watts, D.D., preached December 11, 1748 (London, 1749), Wellcome Collection record",
+      "url": "https://wellcomecollection.org/works/aab3hbg7"
+    }
+  ],
+  "confidence": "Death date B (Britannica, History Today, Johnson 1781). Hymn count B (lower figure). 36 years B. Featured quote A ⚠ (stitched transcription). Johnson quotes A ⚠ wording. First-hymn story C (labelled). Wesley/Joy-to-the-World details B ⚠ (one source each)."
+}

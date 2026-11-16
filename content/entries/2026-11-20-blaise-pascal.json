@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-20",
+  "slug": "blaise-pascal",
+  "title": "The Note Sewn in His Coat",
+  "person": "Blaise Pascal",
+  "theme": "Science, Education & Thinkers",
+  "status": "Verified",
+  "hook": "After Pascal died, a servant found a note sewn in his coat. *One word stood alone: FIRE.*",
+  "dateline": "Blaise Pascal · This week, on November 23, 1654 · Paris",
+  "summary": "On November 23, 1654, Blaise Pascal had a night of fire. He kept his record of it sewn in his coat until he died.",
+  "window": true,
+  "event_date": "2026-11-23",
+  "lead_image": {
+    "src": "/assets/2026-11-20-blaise-pascal/lead-1600.jpg",
+    "srcset": "/assets/2026-11-20-blaise-pascal/lead-800.jpg 800w, /assets/2026-11-20-blaise-pascal/lead-1600.jpg 1600w",
+    "alt": "Engraved portrait of Blaise Pascal in an oval frame",
+    "credit": "Blaise Pascal, engraving by Gérard Edelinck, 1666–1707 · Rijksmuseum, Amsterdam · Public Domain Mark",
+    "focus": "50% 30%"
+  },
+  "numbers": [
+    {
+      "value": "2",
+      "prefix": "about",
+      "meaning": "hours: the length of his “night of fire,” from about 10:30 pm to 12:30 am, by his own record",
+      "as_of": "Nov 23, 1654",
+      "tier": "A",
+      "source_short": "Pascal, Memorial"
+    },
+    {
+      "value": "8",
+      "prefix": "nearly",
+      "meaning": "years he carried his written record of that night sewn into his coat",
+      "as_of": "Aug 1662",
+      "tier": "B",
+      "source_short": "Memorial; SEP; Britannica"
+    },
+    {
+      "value": "356",
+      "meaning": "years the Pensées, the notes he left unfinished at 39, have been in print (first published 1670)",
+      "as_of": "2026",
+      "tier": "B",
+      "source_short": "SEP; New Advent"
+    }
+  ],
+  "story": [
+    "A few days after Blaise Pascal died in Paris in August 1662, a servant in the house noticed something sewn into the lining of his coat. Inside was a small piece of parchment and a sheet of paper, both in Pascal’s hand, one a copy of the other. The page began “The year of grace 1654,” and a few lines down, set on a line by itself, was one word: “FIRE.” It recorded a single night: November 23, 1654, 372 years ago this coming Monday.",
+    "The man who had carried it was one of the sharpest minds in France. Around 1642, at 19, he began building a calculating machine to help his father, a tax official, with his sums. By 1648 he was known for experiments with tubes of mercury, including one carried out on the Puy de Dôme, a mountain in central France. He did it all in a body that rarely let him rest. His sister Gilberte later wrote that “from the age of eighteen, he never passed a day without pain.”",
+    "Faith was not new to him. But after their father died in 1651, his younger sister Jacqueline entered the convent of Port-Royal, and Blaise went the other way. Biographers call the next three years, 1651 to 1654, his “worldly period”: doctors had told him to seek distractions, and he found them in Paris society, though he never stopped working. The Memorial itself is blunter. “I left him; I fled him, renounced, crucified,” he wrote that night.",
+    "Then came Monday, November 23, 1654, the feast of St. Clement. “From about half past ten at night until about half past midnight,” the page says. What follows is not an argument. It is a list of cries: “GOD of Abraham, GOD of Isaac, GOD of Jacob,” “not of the philosophers and of the learned.” “Certitude. Certitude. Feeling. Joy. Peace.” “Joy, joy, joy, tears of joy.” The great mathematician never tried to explain what he saw. He wrote down Scripture, joy and surrender.",
+    "He made a clean copy on parchment and sewed the pages into his coat. For nearly eight years they went wherever he went, and no one seems to have known until after his death.",
+    "The night changed the direction of his life. In January 1655 he went on retreat at Port-Royal. In 1656 and 1657 he wrote the Provincial Letters, sharp and funny attacks on what he saw as the Jesuits' lax moral teaching. And he began collecting notes for a book defending the Christian faith. He never finished it. His illnesses closed in, and in his last illness he gave his own home over to a poor family sick with smallpox. He died on August 19, 1662, at 39.",
+    "In 1670 his friends at Port-Royal published the scattered notes as the Pensées, Thoughts. The paper draft of the Memorial survives today in France’s national library; the parchment he sewed into his coat has been lost.",
+    "The last line of the Memorial is a prayer: “Not to forget your words. Amen.” Pascal made sure he wouldn’t. He kept them where he could feel them."
+  ],
+  "quote": {
+    "text": "Certitude. Certitude. Feeling. Joy. Peace.",
+    "source": "Blaise Pascal, Memorial, 23 November 1654 (French: “Certitude. Certitude. Sentiment. Joie. Paix.”); English from the CCEL edition, translator not named",
+    "tier": "A"
+  },
+  "scripture": {
+    "text": "Now this is eternal life, that they may know You, the only true God, and Jesus Christ, whom You have sent.",
+    "ref": "John 17:3",
+    "translation": "BSB",
+    "note": "Pascal copied this verse into the Memorial that night."
+  },
+  "extras": [
+    {
+      "type": "gallery",
+      "title": "Young Blaise Pascal, stipple engraving, 1844, after a 1637 drawing by J. Domat",
+      "url": "https://iiif.wellcomecollection.org/image/V0004505/full/full/default.jpg",
+      "credit": "Public Domain Mark 1.0"
+    },
+    {
+      "type": "gallery",
+      "title": "Cutaway diagrams of the workings of Pascal's calculating machine, engraving directed by J. R. Benard",
+      "url": "https://iiif.wellcomecollection.org/image/V0025487/full/full/default.jpg",
+      "credit": "Public Domain Mark 1.0"
+    }
+  ],
+  "why": "Pascal’s unfinished notes became the Pensées, still in print in many languages, and its famous “wager” still turns up in philosophy classes. All of it grew from a night he kept sewn in his coat. God met a brilliant, restless, sick man and gave him a certainty no calculation could.",
+  "prompt": "What moment with God do I most need to keep from forgetting?",
+  "ask_yourself": "What moment with God do I most need to keep from forgetting?",
+  "why_reel_line": "A night sewn into a coat became the Pensées, still read 356 years later.",
+  "sources": [
+    {
+      "text": "Blaise Pascal, Memorial (23 Nov 1654), French/Latin text with English translation, Christian Classics Ethereal Library",
+      "url": "https://ccel.org/ccel/pascal/memorial/memorial.i.html"
+    },
+    {
+      "text": "Father Guerrier's account of the discovery, English trans. W. R. Shea, Designing Experiments & Games of Chance (2003), at Inters.org, “Pascal's ‘Memorial’”",
+      "url": "https://inters.org/node/1958"
+    },
+    {
+      "text": "Bibliothèque nationale de France, Pascal exhibition press kit (2019)",
+      "url": "https://www.bnf.fr/sites/default/files/2019-02/dp_pascal.pdf"
+    },
+    {
+      "text": "William Wood, “Blaise Pascal,” Stanford Encyclopedia of Philosophy",
+      "url": "https://plato.stanford.edu/entries/pascal/"
+    },
+    {
+      "text": "Encyclopaedia Britannica, “Blaise Pascal”",
+      "url": "https://www.britannica.com/biography/Blaise-Pascal"
+    },
+    {
+      "text": "Catholic Encyclopedia (1911), “Blaise Pascal,” New Advent",
+      "url": "https://newadvent.org/cathen/11511a.htm"
+    },
+    {
+      "text": "Christianity Today, Christian History, “Blaise Pascal”",
+      "url": "https://www.christianitytoday.com/history/people/evangelistsandapologists/blaise-pascal.html"
+    },
+    {
+      "text": "George Murphy, “Creation's Symmetries, God's Mystery,” Christian History 76 (2002)",
+      "url": "https://christianhistoryinstitute.org/magazine/article/creations-symmetries-gods-mystery"
+    },
+    {
+      "text": "Encyclopaedia Britannica (1911), vol. 20, “Pascal, Blaise”",
+      "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Pascal,_Blaise"
+    }
+  ],
+  "confidence": "Date A (the Memorial itself). All Memorial quotes A, but CCEL's translator is uncredited ⚠. Discovery by servant B (Guerrier, CCEL, CHI). Biography dates B (SEP, Britannica, New Advent, CT). Gilberte's pain quote B ⚠ (via SEP). Smallpox family B ⚠ (one source). Numbers A/B."
+}
