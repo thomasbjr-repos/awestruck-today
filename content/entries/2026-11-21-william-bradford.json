@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-21",
+  "slug": "william-bradford",
+  "title": "A Promise Before God",
+  "person": "William Bradford",
+  "theme": "Entrepreneurs & Builders",
+  "status": "Verified",
+  "hook": "Wrong shore, no authority, angry passengers. *So they made a promise before God.*",
+  "dateline": "William Bradford · Signed on this day, November 21, 1620 (11 November, Old Style) · Off Cape Cod, Massachusetts",
+  "summary": "On November 21, 1620, William Bradford and 40 other men signed the Mayflower Compact off Cape Cod.",
+  "lead_image": {
+    "src": "/assets/2026-11-21-william-bradford/lead-1600.jpg",
+    "srcset": "/assets/2026-11-21-william-bradford/lead-800.jpg 800w, /assets/2026-11-21-william-bradford/lead-1600.jpg 1600w",
+    "alt": "Painting of the Pilgrims gathered in the Mayflower's cabin to sign the Compact",
+    "credit": "Jean Leon Gerome Ferris, *The Mayflower Compact, 1620* (c. 1899, an imagined scene) · Library of Congress · Public domain, via Wikimedia Commons",
+    "focus": "50% 45%"
+  },
+  "numbers": [
+    {
+      "value": "41",
+      "meaning": "men who signed the Mayflower Compact off Cape Cod, including William Bradford",
+      "as_of": "Nov 21, 1620",
+      "tier": "B",
+      "source_short": "Britannica; MayflowerHistory.com"
+    },
+    {
+      "value": "50",
+      "prefix": "scarce",
+      "meaning": "of “100. & odd” passengers still alive after the first winter, by Bradford's own count",
+      "as_of": "spring 1621",
+      "tier": "A",
+      "source_short": "Bradford, Of Plimoth Plantation"
+    },
+    {
+      "value": "31",
+      "meaning": "of 36 years he served as governor of Plymouth Colony, 1621–1656",
+      "as_of": "1656",
+      "tier": "B",
+      "source_short": "State Library of Massachusetts; Pilgrim Hall Museum"
+    }
+  ],
+  "story": [
+    "Aboard a small ship anchored off Cape Cod, a 30-year-old named William Bradford put his name to a single page. Forty other men did the same. It was November 21, 1620, 406 years ago today, though the page itself says “ye 11. of November.” England still used the old Julian calendar, which ran ten days behind the one we use now, so both dates name the same day.",
+    "Bradford had been a Yorkshire orphan, passed from one relative to the next. At about 12 he began walking miles to hear a Puritan preacher, and by 17 he had joined a small Separatist congregation that met in the village of Scrooby. Its members had broken with the Church of England, and it cost them. They fled to Holland, spent years in Leiden working in the cloth trade, and finally risked the Atlantic.",
+    "Now they were in the wrong place. Storms and dangerous shoals had left them north of where their charter applied. Some passengers who weren't part of the congregation had started talking. Bradford remembered “discontented & mutinous speeches”: once ashore, they said, they would “use their owne libertie.” So before anyone landed, the men made a promise. They would “covenant & combine our selves togeather into a civill body politick” and obey “just & equall lawes.” They made it, the text says, “in ye presence of God, and one of another.”",
+    "When they finally stood on solid ground, Bradford wrote, “they fell upon their knees & blessed ye God of heaven.” The winter nearly finished them. In December 1620 Bradford's wife, Dorothy, fell from the ship and drowned. By spring, “of 100. & odd persons, scarce 50. remained,” and at the worst there were “but 6. or 7. sound persons” to nurse everyone else.",
+    "The land they had settled was not empty. It had been Patuxet, a Wampanoag village emptied by an epidemic only a few years before. One of its people, Tisquantum, known as Squanto, had been kidnapped by an English captain in 1614 and sold into slavery in Spain. He made his way home through England in 1619 and found nearly everyone dead. Yet he became the colonists' interpreter and guide. Bradford called him “a spetiall instrument sent of God for their good beyond their expectation.” In March 1621 the Wampanoag leader Massasoit, whose people had been ravaged by the same disease and were pressed by the Narragansett, made a peace with Plymouth that held for the rest of his life.",
+    "That April, after Governor John Carver died, Bradford was chosen to lead. He held the office for 31 of the next 36 years. He was no marble saint. When soldiers from Connecticut and Massachusetts burned the Pequot fort at Mystic in 1637, killing “about 400” by his own account, Bradford called it “a fearfull sight,” then wrote that “ye victory seemed a sweete sacrifice.” The peace with Massasoit's people did not long survive Massasoit, who died around 1660. Under his son Metacom it collapsed into King Philip's War in 1675, nearly 20 years after Bradford's death in 1657.",
+    "This week, many Americans sit down to Thanksgiving. Bradford's own history doesn't make the colony the hero. Looking back on that first landing, he asked a question instead: “What could now sustaine them but the spirite of God & his grace?” His handwritten pages still survive at the State Library of Massachusetts, asking it."
+  ],
+  "quote": {
+    "text": "What could now sustaine them but the spirite of God & his grace?",
+    "source": "William Bradford, Of Plimoth Plantation, Book 1, ch. 9 (1898 Commonwealth ed., p. 96)",
+    "tier": "A"
+  },
+  "scripture": {
+    "text": "O give thanks unto the LORD, for he is good: for his mercy endureth for ever.",
+    "ref": "Psalm 107:1",
+    "translation": "KJV",
+    "note": "Bradford echoes this psalm in his account of the landing."
+  },
+  "extras": [
+    {
+      "type": "gallery",
+      "title": "A page of Bradford's Of Plimoth Plantation manuscript, facsimile from the 1898 Commonwealth edition",
+      "url": "https://www.worldhistory.org/uploads/images/13232.jpg",
+      "credit": "Public domain (World History Encyclopedia: “in the public domain”)"
+    },
+    {
+      "type": "gallery",
+      "title": "Cover of Bradford's Of Plimoth Plantation manuscript, from the 1898 edition",
+      "url": "https://www.worldhistory.org/uploads/images/13231.jpg",
+      "credit": "Public domain (World History Encyclopedia)"
+    }
+  ],
+  "why": "Bradford's handwritten history still sits in the State Library of Massachusetts, and the Compact's words are still taught in American classrooms. Its most honest pages show a frightened, divided, flawed company that, by Bradford's own account, survived on “the spirite of God & his grace.”",
+  "prompt": "When everything falls apart, what actually sustains me?",
+  "ask_yourself": "When everything falls apart, what actually sustains me?",
+  "why_reel_line": "Bradford's own history credits Plymouth's survival to “the spirite of God & his grace.”",
+  "sources": [
+    {
+      "text": "William Bradford, Of Plimoth Plantation (manuscript c. 1630–1650), printed as Bradford's History “Of Plimoth Plantation” (Boston: Wright & Potter, 1898), Project Gutenberg #24950",
+      "url": "http://www.gutenberg.org/files/24950/24950-h/24950-h.htm"
+    },
+    {
+      "text": "Christian History Institute, It Happened Today, November 21 (Dan Graves)",
+      "url": "https://christianhistoryinstitute.org/it-happened-today/11/21"
+    },
+    {
+      "text": "Encyclopaedia Britannica, “Mayflower Compact”",
+      "url": "https://britannica.com/topic/Mayflower-Compact"
+    },
+    {
+      "text": "State Library of Massachusetts (mass.gov), “Bradford's Manuscript ‘Of Plimoth Plantation’”",
+      "url": "https://www.mass.gov/info-details/bradfords-manuscript-of-plimoth-plantation"
+    },
+    {
+      "text": "Pilgrim Hall Museum, “The Life of William Bradford”",
+      "url": "https://www.pilgrimhall.org/?p=2400"
+    },
+    {
+      "text": "Pilgrim Hall Museum, “Tisquantum / Squanto”",
+      "url": "https://www.pilgrimhall.org/?p=1825"
+    },
+    {
+      "text": "History.com, “The Wampanoag-Pilgrim peace treaty”",
+      "url": "https://history.com/news/wampanoag-pilgrim-peace-treaty-thanksgiving"
+    }
+  ],
+  "confidence": "Date A (Compact's own “11. of November” + 10-day Julian offset; Britannica/CHI agree on Nov 21 NS). All Bradford quotes A (1898 printed ed., read). 41 signers B. 31 years governor B. Squanto/Massasoit/King Philip's War B (1661/1675 points single-source ⚠)."
+}

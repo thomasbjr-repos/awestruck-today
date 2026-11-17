@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-18",
+  "slug": "george-frideric-handel",
+  "title": "The Score No One Had Heard",
+  "person": "George Frideric Handel",
+  "theme": "Music & Hymns",
+  "status": "Verified",
+  "hook": "He landed in Dublin with a score no one had heard. *It was called Messiah.*",
+  "dateline": "George Frideric Handel · Arrived on this day, November 18, 1741 · Dublin, Ireland",
+  "summary": "On November 18, 1741, George Frideric Handel landed in Dublin with a score no one had heard: Messiah.",
+  "lead_image": {
+    "src": "/assets/2026-11-18-george-frideric-handel/lead-800.jpg",
+    "srcset": "/assets/2026-11-18-george-frideric-handel/lead-800.jpg 800w",
+    "alt": "Portrait of George Frideric Handel, seated, in a grey coat and white wig",
+    "credit": "George Frideric Handel by Thomas Hudson, 1756 · Public domain, via Wikimedia Commons",
+    "focus": "50% 25%"
+  },
+  "numbers": [
+    {
+      "value": "24",
+      "prefix": "about",
+      "meaning": "days Handel took to compose Messiah (Aug 22–Sep 14, 1741)",
+      "as_of": "1741",
+      "tier": "B",
+      "source_short": "Wikipedia; Coram Story"
+    },
+    {
+      "value": "700",
+      "prefix": "about",
+      "meaning": "people at the first performance, Dublin",
+      "as_of": "Apr 13, 1742",
+      "tier": "B",
+      "source_short": "classical-music.com; Wikipedia",
+      "reported": true
+    },
+    {
+      "value": "£7,000",
+      "prefix": "almost",
+      "meaning": "raised for London's Foundling Hospital by his annual Messiah benefits, 1750–1759",
+      "as_of": "1759",
+      "tier": "B",
+      "source_short": "Coram Story"
+    }
+  ],
+  "story": [
+    "The packet boat from Holyhead came into Dublin on November 18, 1741, 285 years ago today, and George Frideric Handel stepped off it. He was 56, famous, and in trouble. In his luggage was a score no audience had ever heard. It was called *Messiah*.",
+    "London had cooled on him. Earlier that year his last Italian opera, *Deidamia*, had closed after three performances, and he gave up Italian opera for good. That summer his friend Charles Jennens sent him a new libretto, built almost entirely from the King James Bible and the Book of Common Prayer. Handel began setting it on August 22 and had the whole thing drafted in about 24 days.",
+    "Then he left. The Lord Lieutenant of Ireland, the Duke of Devonshire, had probably invited him over for a season of concerts. Back in London, Jennens was stung: it was “some mortification,” he wrote, to hear that instead of performing it there Handel had “gone into Ireland with it.”",
+    "Dublin took Handel in. He gave two series of subscription concerts that winter. Then, in spring, he offered the new oratorio for charity. The notices announced it “For Relief of the Prisoners in the several Gaols” and for two of the city's hospitals. On the day, the stewards asked the ladies to come without hoops in their skirts and the gentlemen without their swords, to fit more people in. About 700 squeezed in on April 13, 1742. “Words are wanting to express the exquisite Delight it afforded to the admiring crouded Audience,” the *Dublin Journal* reported.",
+    "London was slower to warm to it. For years after, *Messiah* came and went.",
+    "What changed it was children. From 1750 Handel conducted *Messiah* every year for London's Foundling Hospital, a home for abandoned babies, and the performances raised almost £7,000 for it before he died. He left the hospital a copy of the score and parts so the concerts could go on. After that, *Messiah* never really stopped.",
+    "Handel died in London on April 14, 1759, the day before Easter. James Smyth, one of the few people he wanted near him at the end, wrote that he died “as he lived, a good Christian, with a true sense of his duty to God and man, and in perfect charity with all the world.”",
+    "The words Handel carried off that boat weren't really his. Jennens had gathered them, and the prophets and apostles had written them long before. Handel gave them a melody. People still stand when the “Hallelujah” chorus starts, in cities he never heard of, singing Scripture back to God."
+  ],
+  "quote": {
+    "text": "He died as he lived, a good Christian, with a true sense of his duty to God and man, and in perfect charity with all the world.",
+    "source": "James Smyth, letter to Bernard Granville, April 1759",
+    "tier": "B"
+  },
+  "scripture": {
+    "text": "For I know that my redeemer liveth, and that he shall stand at the latter day upon the earth:",
+    "ref": "Job 19:25",
+    "translation": "KJV",
+    "note": "Part III of Messiah opens with this verse: “I know that my Redeemer liveth.”"
+  },
+  "extras": [
+    {
+      "type": "gallery",
+      "title": "Messiah autograph title page, 1741",
+      "url": "https://commons.wikimedia.org/wiki/File:Messiah-titlepage.jpg",
+      "credit": "Public domain (Commons)"
+    },
+    {
+      "type": "gallery",
+      "title": "Messiah plaque, Fishamble Street, Dublin",
+      "url": "https://commons.wikimedia.org/wiki/File:Messiah_plaque_in_Fishamble_Street,_Dublin_-_geograph.org.uk_-_2833299.jpg",
+      "credit": "CC BY-SA 2.0"
+    },
+    {
+      "type": "gallery",
+      "title": "Fishamble Street, Dublin",
+      "url": "https://commons.wikimedia.org/wiki/File:Dublin_FishambleStr_30_IMG_20250806_0857.jpg",
+      "credit": "CC0"
+    }
+  ],
+  "why": "Handel didn't premiere Messiah for his own glory. He gave it to free prisoners, and later used it to care for abandoned children. Every Christmas it still fills churches and concert halls, and the words people stand for are Scripture. God took a composer whose career was failing and made his music carry the gospel for 284 years.",
+  "prompt": "What could I give away that God might use to set someone free?",
+  "ask_yourself": "What could I give away that God might use to set someone free?",
+  "why_reel_line": "God took a failing composer's music and made it carry the gospel for 284 years.",
+  "sources": [
+    {
+      "text": "Classical Music, “Handel Messiah: the work that caused traffic jams at its Dublin premiere”",
+      "url": "https://www.classical-music.com/features/handel-messiah"
+    },
+    {
+      "text": "Wikipedia, “Messiah (Handel)”",
+      "url": "https://en.wikipedia.org/wiki/Messiah_(Handel)"
+    },
+    {
+      "text": "J.T. Gilbert, A History of the City of Dublin (1861), quoted at Come Here To Me; Wikipedia, “1741 in music” (cites Burrows, ODNB)",
+      "url": "https://en.wikipedia.org/wiki/1741_in_music"
+    },
+    {
+      "text": "Dublin Journal, 27 Mar, 13 Apr and 17 Apr 1742, quoted at Music Academy Online and Ireland in History",
+      "url": "https://www.musicacademyonline.com/newsroom/favorite_messiah_12-23-2006.php"
+    },
+    {
+      "text": "Classical Music, “Why the premiere of Handel's Messiah took place in Dublin over London”",
+      "url": "https://www.classical-music.com/features/works/why-the-premiere-of-handels-messiah-took-place-in-dublin"
+    },
+    {
+      "text": "Coram Story, “George Frideric Handel”",
+      "url": "https://coramstory.org.uk/handel/"
+    },
+    {
+      "text": "Dictionary of National Biography (1890), “Handel, George Frideric,” vol. 24, p. 303",
+      "url": "https://en.wikisource.org/wiki/Page:Dictionary_of_National_Biography_volume_24.djvu/303"
+    }
+  ],
+  "confidence": "Arrival date B (three sources). Composition dates B. 700 audience B (reported). £7,000 B. Faith B (Hawkins; Smyth). Smyth quote wording ⚠."
+}

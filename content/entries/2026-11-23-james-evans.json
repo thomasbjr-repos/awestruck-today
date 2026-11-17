@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-23",
+  "slug": "james-evans",
+  "title": "Hymns From a Homemade Press",
+  "person": "James Evans",
+  "theme": "Missions & Movements",
+  "status": "Verified",
+  "hook": "He printed Cree hymns on a homemade press. *The Cree carried them farther than he could.*",
+  "dateline": "James Evans · Died on this day, November 23, 1846 · Keelby, Lincolnshire, England",
+  "summary": "James Evans died on November 23, 1846. The Cree hymns he printed on a homemade press went farther than he could.",
+  "lead_image": {
+    "src": "/assets/2026-11-23-james-evans/lead-1600.jpg",
+    "srcset": "/assets/2026-11-23-james-evans/lead-800.jpg 800w, /assets/2026-11-23-james-evans/lead-1600.jpg 1540w",
+    "alt": "Engraved portrait of James Evans in a dark coat and white neckcloth",
+    "credit": "“Rev. James Evans,” frontispiece, Egerton R. Young, *The Apostle of the North* (1900) · Public domain, via Internet Archive",
+    "focus": "50% 30%"
+  },
+  "numbers": [
+    {
+      "value": "100",
+      "meaning": "copies of his first Cree syllabic hymn book (16 pages), printed and hand-bound at Norway House",
+      "as_of": "June 1841",
+      "tier": "B",
+      "source_short": "Evans's letter, June 11, 1841"
+    },
+    {
+      "value": "5,000",
+      "prefix": "about",
+      "meaning": "pages printed in Cree on his improvised press in its first months",
+      "as_of": "June 1841",
+      "tier": "B",
+      "source_short": "Evans's letter, June 11, 1841"
+    },
+    {
+      "value": "86,475",
+      "meaning": "Indigenous people in Canada who could speak a Cree language (not all of them read syllabics)",
+      "as_of": "2021 Census",
+      "tier": "A",
+      "source_short": "Statistics Canada"
+    }
+  ],
+  "story": [
+    "The missionary meeting in Lincolnshire was over when James Evans's heart gave out. He died suddenly in the village of Keelby on November 23, 1846, 180 years ago today. He was 45. He had come home to answer charges, and he never saw Norway House again.",
+    "In 1840 he had arrived at Norway House, a Hudson's Bay Company post north of Lake Winnipeg, to lead the Wesleyan Methodist missions in the northwest. By 1836 he had already worked out a syllable-based script for Ojibwe. Within two months at Norway House he had the basic structure of one for Cree. It caught on fast. “The Indians and children sing these hymns well and several read with some fluency,” he wrote in his diary on December 3, 1840. The reason was simple: “every character in the alphabet being a syllable, so that when these are learned, all is learned.”",
+    "There was no press, so he improvised. He cast type, apparently from the lead linings of tea chests. He mixed ink from soot and sturgeon oil and pulled pages on a fur press. By June 11, 1841, he told his brother, he had printed about 5,000 pages in Cree, among them a hymn book of 16 pages, 100 copies, bound by hand. A story grew later that the first hymns were printed on birch bark; his own letters from the time never mention it.",
+    "He didn't do it alone; his interpreter, Thomas Hassall, worked beside him. And the script soon outran the missionaries. Library and Archives Canada notes that within a decade syllabics had spread west and east, and that Cree people usually learned to read and write them without the aid of missionaries.",
+    "Who first gave the Cree their writing is still debated. For generations, the credit went to Evans. Cree oral history tells it differently. Around 1830, a Wood Cree man from the Stanley Mission area, Mistanâkôwêw, or Calling Badger, came back from what his people took for death, carrying birch bark marked with symbols. Cree historian Winona Wheeler argues the missionaries learned the script from the Cree, not the other way round. Others see a collaboration. Evans himself appears never to have claimed outright that he invented it.",
+    "His last years were hard, and some of the damage was his own. In 1844, on a canoe trip to the Athabasca country to get ahead of a Catholic missionary, a gun Evans was holding went off and killed Hassall, his interpreter. Evans never recovered from the shock. In February 1846, rumours about his conduct with Indigenous girls living in his home became formal charges, brought by the Rossville community. A church trial found him not guilty but judged his care of a sick girl in his house imprudent. In London that October, mission leaders again cleared him of sexual misconduct but called his familiarity with the girls “unseemly and improper.” A few weeks later he was dead.",
+    "The script outlived him. In 1861 a whole Bible appeared in Cree syllabics, the work of translators Evans had gathered around him. Syllabics later spread to Ojibwe, Inuktitut and some Dene languages. The gospel reached the Cree through a flawed missionary, a Chipewyan interpreter and Cree hunters teaching each other, and the script is still read today."
+  ],
+  "quote": {
+    "text": "every character in the alphabet being a syllable, so that when these are learned, all is learned.",
+    "source": "James Evans, diary, 3 December 1840, as printed in Ross Mitchell, “Making Birch Bark Talk,” Manitoba Pageant 9:2 (January 1964)",
+    "tier": "B"
+  },
+  "scripture": {
+    "text": "And how hear we every man in our own tongue, wherein we were born?",
+    "ref": "Acts 2:8",
+    "translation": "KJV",
+    "note": "At Pentecost, each heard God's word in their own language."
+  },
+  "why": "Cree syllabics are still written today, in Cree hymn books and Bibles, on signs, and in Inuktitut and Ojibwe. God used a flawed missionary, a Chipewyan interpreter and Cree hunters who taught each other, and Scripture reached a people in a script quick to learn.",
+  "prompt": "Whose names are missing when I tell the story of my faith?",
+  "ask_yourself": "Whose names are missing when I tell the story of my faith?",
+  "why_reel_line": "God used a flawed missionary and Cree hunters to put Scripture in Cree hands.",
+  "sources": [
+    {
+      "text": "James Evans, diary (Oct–Dec 1840) and letter of 11 June 1841, as printed in Ross Mitchell, “Making Birch Bark Talk,” Manitoba Pageant 9:2 (January 1964), Manitoba Historical Society",
+      "url": "https://mhs.mb.ca/docs/pageant/09/birchbarktalk.shtml"
+    },
+    {
+      "text": "Margaret V. Ray, introduction to James Evans, Cree Syllabic Hymn Book [Norway House, 1841], Bibliographical Society of Canada Facsimile Series No. 4 (Toronto, 1954) (quotes Evans's letters of 11 June 1841 and 2 Aug 1842)",
+      "url": "https://archive.org/details/P000209"
+    },
+    {
+      "text": "Gerald M. Hutchinson, “Evans, James,” Dictionary of Canadian Biography, vol. 7 (1988)",
+      "url": "https://www.biographi.ca/en/bio/evans_james_7E.html"
+    },
+    {
+      "text": "John McClintock and James Strong, Cyclopaedia of Biblical, Theological and Ecclesiastical Literature (1870), “Evans, James”",
+      "url": "https://www.studylight.org/encyclopedias/eng/mse/e/evans-james.html"
+    },
+    {
+      "text": "Samara mîkiwin Harp, “Adoption of Cree Syllabics,” Library and Archives Canada blog, 20 June 2024",
+      "url": "https://thediscoverblog.com/2024/06/20/adoption-of-cree-syllabics/"
+    },
+    {
+      "text": "Winona Stevenson [Wheeler], “Calling Badger and the Symbols of the Spirit Languages: The Cree Origins of the Syllabic System,” Oral History Forum 19–20 (1999–2000)",
+      "url": "https://creeliteracy.org/wp-content/uploads/2012/12/calling-badger.pdf"
+    },
+    {
+      "text": "Walter Strong, “A question of legacy: Cree writing and the origin of the syllabics,” CBC News, 2 June 2020",
+      "url": "https://newsinteractives.cbc.ca/longform/a-question-of-legacy-cree-writing-and-the-origin-of-the-syllabics"
+    },
+    {
+      "text": "The Canadian Encyclopedia, “Cree Syllabics”",
+      "url": "https://thecanadianencyclopedia.ca/en/article/cree-syllabics"
+    },
+    {
+      "text": "Statistics Canada, “Indigenous languages in Canada, 2021” (29 March 2023)",
+      "url": "https://www150.statcan.gc.ca/n1/pub/11-627-m/11-627-m2023029-eng.htm"
+    },
+    {
+      "text": "Egerton R. Young, The Apostle of the North, Rev. James Evans (Toronto: Briggs, 1900), images only",
+      "url": "https://archive.org/details/apostleofnorthre00younuoft"
+    }
+  ],
+  "confidence": "Death date and Keelby B (DCB and McClintock & Strong; ⚠ Wikipedia and MHS say London). Diary quote B ⚠ (one print, Mitchell 1964). 100 copies and 5,000 pages B (Evans letter in two prints). Hassall shooting B. Misconduct charges and verdicts B ⚠ (DCB wording). Calling Badger reported as Cree oral tradition (C), with the debate itself B. 86,475 Cree speakers A."
+}

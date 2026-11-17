@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-26",
+  "slug": "gian-lorenzo-bernini",
+  "title": "He Died Trusting the Blood",
+  "person": "Gian Lorenzo Bernini",
+  "theme": "Arts & Film",
+  "status": "Verified",
+  "hook": "He carved saints for popes, and had a woman's face slashed. *He died trusting the blood.*",
+  "dateline": "Gian Lorenzo Bernini · Died this week, on November 28, 1680 · Rome",
+  "summary": "Gian Lorenzo Bernini carved saints for popes and had a woman's face slashed. He died in Rome on November 28, 1680, trusting the blood of Christ.",
+  "window": true,
+  "event_date": "2026-11-28",
+  "lead_image": {
+    "src": "/assets/2026-11-26-gian-lorenzo-bernini/lead-1600.jpg",
+    "srcset": "/assets/2026-11-26-gian-lorenzo-bernini/lead-800.jpg 800w, /assets/2026-11-26-gian-lorenzo-bernini/lead-1600.jpg 1600w",
+    "alt": "Bernini's painted self-portrait as a young man, dark hair, looking over his shoulder",
+    "credit": "Gian Lorenzo Bernini, *Self-portrait as a young man*, c. 1623 · Galleria Borghese, Rome · Public domain, via Wikimedia Commons",
+    "focus": "50% 30%"
+  },
+  "numbers": [
+    {
+      "value": "40",
+      "prefix": "about",
+      "meaning": "years he is reported to have gone to church daily and taken Communion twice a week, to his death",
+      "as_of": "1680",
+      "tier": "B",
+      "source_short": "History Today; Lev",
+      "reported": true
+    },
+    {
+      "value": "3,000 scudi",
+      "meaning": "the fine imposed after he ordered the 1638 razor attack on Costanza Bonarelli, later excused by Pope Urban VIII",
+      "as_of": "1638",
+      "tier": "B",
+      "source_short": "McPhee; Historia"
+    },
+    {
+      "value": "11",
+      "meaning": "children born to Bernini and Caterina Tezio, whom he married in May 1639",
+      "as_of": "1680",
+      "tier": "B",
+      "source_short": "Wikipedia"
+    }
+  ],
+  "story": [
+    "The image stood where he could see it from his bed: Christ on the cross, his blood pouring down into a wide, rolling sea. Gian Lorenzo Bernini had designed it himself. He was 81 and dying, and his son Pietro Filippo, a priest, was praying beside him. He died in Rome on November 28, 1680, 346 years ago this week.",
+    "For half a century he had been the sculptor of popes. He painted the young, wary face in his self-portrait around 1623. Over the high altar of St Peter's he raised the bronze baldacchino (1623–1634); in a side chapel across town he carved Teresa of Ávila caught up in prayer (1647–1652); in front of the basilica he wrapped the square in two curving colonnades (1656–1667). The church of St Peter, he wrote, should have a portico that seemed “to maternally receive with open arms” Catholics, heretics and unbelievers alike.",
+    "He was not a gentle man. In the mid-1630s, in his late thirties, he began an affair with Costanza Bonarelli, the young wife of one of his own assistants, and carved her bust: lips parted, mid-breath, unmistakably alive. In the summer of 1638 he found out she was also seeing his younger brother, Luigi. He chased Luigi through the streets and beat him with an iron bar. Then he sent a servant to slash Costanza's face with a razor.",
+    "Justice fell on everyone but him. Costanza was taken away at night and confined for months in the Casa Pia, a house for “fallen” women. The servant was exiled. Bernini was fined 3,000 scudi, and Pope Urban VIII excused even that. In May 1639 he married Caterina Tezio, at the pope's urging; they had eleven children. Costanza went home to her husband that spring, and the Bonarelli household went on to prosper. Her bust is in Florence's Bargello now. It shows her face as it was before.",
+    "Something in Bernini changed. His early biographers say that after this he turned more sincerely to his faith. For roughly the last forty years of his life, he is reported to have gone to church every day and taken Communion twice a week. After work he often stopped at the Jesuits' church, the Gesù, to pray. With the Jesuits he took up the Bona Mors, a devotion for learning to die well, keeping “the idea of death always present before his mind,” as his early biographer Filippo Baldinucci put it.",
+    "None of it undid the razor. Grace doesn't pretend it does. But Baldinucci recorded where Bernini put his hope at the end: not in his marble or his fame, but in the power of Christ's blood, in which he hoped his sins would be drowned.",
+    "His son Domenico, who watched him die, wrote that he left it doubtful whether his life was more admirable in deeds or his death more commendable in devotion.",
+    "The colonnade still opens onto St Peter's Square, and the crowds still walk into it. A violent man who needed mercy built the arms that welcome people looking for it."
+  ],
+  "quote": {
+    "text": "The church of St Peter, being virtually the mother of all the others, had to have a portico that would in fact appear to maternally receive with open arms…",
+    "source": "Gian Lorenzo Bernini, memorandum on the colonnade, Biblioteca Apostolica Vaticana MS Chigi H II 22, fols. 105–9v; trans. Irving Lavin, “Bernini at St. Peter's,” in W. Tronzo (ed.), St. Peter's in the Vatican (2005), n. 74",
+    "tier": "A"
+  },
+  "scripture": {
+    "text": "He will again have compassion on us; He will vanquish our iniquities. You will cast out all our sins into the depths of the sea.",
+    "ref": "Micah 7:19",
+    "translation": "BSB",
+    "note": "Sins thrown into the sea: the picture he died looking at."
+  },
+  "why": "Every pilgrim who crosses St Peter's Square walks between Bernini's colonnades, built to look like a mother's open arms. He designed them while carrying a crime he was never punished for. His story excuses nothing; it shows where a guilty man finally looked for mercy.",
+  "prompt": "Where do I go for mercy when I know I've hurt someone?",
+  "ask_yourself": "Where do I go for mercy when I know I've hurt someone?",
+  "why_reel_line": "A violent man who needed mercy built the open arms of St Peter's Square.",
+  "sources": [
+    {
+      "text": "Filippo Baldinucci, Vita del Cavaliere Gio. Lorenzo Bernino (Florence, 1682), p. 61, as quoted by James Monti (source 6)"
+    },
+    {
+      "text": "Domenico Bernini, Vita del Cavalier Gio. Lorenzo Bernino (1713); The Life of Gian Lorenzo Bernini, trans. Franco Mormando (Penn State UP, 2011), as quoted by Lev (source 4)"
+    },
+    {
+      "text": "Gian Lorenzo Bernini, memorandum on the colonnade, BAV MS Chigi H II 22, fols. 105–9v, trans. Irving Lavin, “Bernini at St. Peter's,” in William Tronzo (ed.), St. Peter's in the Vatican (Cambridge UP, 2005), n. 74",
+      "url": "https://stpetersbasilica.info/Docs/SPV/Bernini-at-StPeter's-4.htm"
+    },
+    {
+      "text": "Elizabeth Lev, “Bernini and the Art of Dying,” Sacred Architecture Journal vol. 40",
+      "url": "https://www.sacredarchitecture.org/articles/bernini_and_the_art_of_dying"
+    },
+    {
+      "text": "Judith Hook, “Bernini and Rome,” History Today",
+      "url": "https://www.historytoday.com/archive/bernini-and-rome"
+    },
+    {
+      "text": "James Monti, “Lessons in Piety from a Great Catholic Artist,” The Wanderer",
+      "url": "https://thewandererpress.com/catholic/news/frontpage/lessons-in-piety-from-a-great-catholic-artist/"
+    },
+    {
+      "text": "Wikipedia, “Costanza Piccolomini Bonarelli” (citing Sarah McPhee, Bernini's Beloved, Yale UP, 2012; Mormando, Bernini: His Life and His Rome, 2011; Schama)",
+      "url": "https://en.wikipedia.org/wiki/Costanza_Piccolomini_Bonarelli"
+    },
+    {
+      "text": "Historia Magazine, “Slashing the face: punishing unfaithful women in Italy”",
+      "url": "https://historiamag.com/slashing-face-punishing-unfaithful-women-in-italy/"
+    },
+    {
+      "text": "Finestre sull'Arte, “Gian Lorenzo Bernini: life, works, baroque masterpieces”",
+      "url": "https://www.finestresullarte.info/en/ab-art-base/gian-lorenzo-bernini-life-works-baroque-masterpieces"
+    },
+    {
+      "text": "Encyclopaedia Britannica, “Gian Lorenzo Bernini”",
+      "url": "https://www.britannica.com/biography/Gian-Lorenzo-Bernini"
+    },
+    {
+      "text": "Wikipedia, “Gian Lorenzo Bernini”",
+      "url": "https://en.wikipedia.org/wiki/Gian_Lorenzo_Bernini"
+    },
+    {
+      "text": "The Idle Woman, review of McPhee, Bernini's Beloved",
+      "url": "https://theidlewoman.net/2015/02/14/berninis-beloved-sarah-mcphee/"
+    },
+    {
+      "text": "Bible Hub, Micah 7:19 (BSB)",
+      "url": "https://biblehub.com/micah/7-19.htm"
+    }
+  ],
+  "confidence": "Death date B (four sources). Works dates B. Affair, assault on Luigi, razor attack, fine and pardon B (Wikipedia/McPhee/Mormando + Historia + Finestre). Marriage/11 children B. Devotion B (reported). Featured quote A (Bernini's manuscript, Lavin translation via reproduction ⚠). 'Drown his sins' ⚠ paraphrase only (Baldinucci not read). Spiritual Exercises/Forty Hours not confirmed, omitted."
+}
