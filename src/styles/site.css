@@ -179,8 +179,12 @@ html.at,html.at body{margin:0}
 /* ---------- Why it matters / Sources ---------- */
 .sec{padding-block:clamp(40px,6vw,88px)}
 .sec p{margin:0}
-.prompt{margin-top:18px !important;padding:18px 20px;border-radius:16px;background:var(--panel);border:1px solid var(--line);color:var(--mist)}
-.prompt b{color:var(--ink)}
+/* Ask Yourself card: label in the theme color, the question in the display serif. No glow behind the words. */
+.ask{margin-top:clamp(20px,3vw,32px);padding:clamp(20px,3vw,36px);border-radius:16px;background:var(--panel);border:1px solid var(--line)}
+.ask .lbl{display:block;font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:.16em;line-height:1.4;text-transform:uppercase;color:var(--theme)}
+.ask .lbl::after{content:"";display:block;width:clamp(32px,4vw,56px);height:2px;margin-top:clamp(10px,1.2vw,14px);background:var(--theme)}
+.ask .q{margin:clamp(14px,1.8vw,22px) 0 0 !important;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(30px,4.4vw,56px);line-height:1.1;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.ask .q i{color:var(--theme)}
 .tiers{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .tier{font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--mist)}
 .tier.a{border-color:var(--theme);color:var(--theme)}
