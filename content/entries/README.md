@@ -63,7 +63,8 @@ Text fields may use `*asterisks*` for italics; everything else is shown as plain
   "youtube_id": "the Short's video id",
   "extras": [ { "type": "GALLERY", "title": "…", "url": "https://…", "credit": "Public domain · Wikimedia Commons" } ],
   "why": "Why It Matters Today, two or three sentences.",
-  "prompt": "What's the \"not yet\" you've been saying to God?",
+  "why_reel_line": "One sentence drawn from `why`, for the reel's Why It Matters card.",
+  "ask_yourself": "What's the \"not yet\" I've been saying to God?",
   "sources": [ { "text": "Augustine, *De beata vita* 1.6 (386)", "tier": "A", "url": "https://…" } ],
   "confidence": "Confidence note for anything traditional or disputed."
 }
@@ -72,4 +73,6 @@ Text fields may use `*asterisks*` for italics; everything else is shown as plain
 - `window: true` stamps the entry "THIS WEEK" (the ±3-day rule); give the real event date in `event_date`.
 - `numbers`: 1–3 figures; the first is the headline figure on the homepage. Never a Tier C figure first.
 - `quote` is used when no `{ "quote": … }` item sits inside `story`; the homepage also shows it.
+- `why` is about **60 words or fewer**: it is printed word for word on its own tile in every social post, so the paragraph itself is shortened rather than cut down for the tile. `why_reel_line` is one sentence of **18 words or fewer**, drawn from it, for the reel card (about 4 seconds).
+- `ask_yourself` (renamed from `prompt` on Nov 14, 2026) is **one question in the first person** — "I", "my", "me", never "you" — of **14 words or fewer**: answerable, no yes/no, no comparison with the person in the story. It shows as a card on the entry page, and as its own tile and reel card on every social post. Entries that still use `prompt` render in the same card.
 - Older entries with a single `html` field still render.
