@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install Pillow (resizes website lead images)
+        run: pip install --quiet pillow
+
       - name: Fetch cleared media (license-checked)
         run: |
           shopt -s nullglob   # no entries yet: do nothing instead of passing the glob through
@@ -30,6 +33,6 @@ jobs:
         run: |
           git config user.name "awestruck-bot"
           git config user.email "actions@users.noreply.github.com"
-          mkdir -p assets
-          git add assets
+          mkdir -p assets public/assets
+          git add assets public/assets
           git diff --cached --quiet || (git commit -m "Add cleared media [skip ci]" && git push)
